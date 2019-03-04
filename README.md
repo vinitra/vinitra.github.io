@@ -1,4 +1,4 @@
 # Vinitra Swamy
-Personal Website, using Boostrap / JS / CSS
+Personal Website
 
 ### [vinitra.github.io](http://vinitra.github.io)
