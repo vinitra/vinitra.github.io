@@ -90,7 +90,7 @@
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
               
-              <p>Hello! I am an AI researcher and PhD student working on deep learning model explainability at <a href="https://www.epfl.ch/">École Polytechnique Fédérale de Lausanne (EPFL)</a>. I'm coadvised by Prof. Tanja Käser at the <a href="https://www.epfl.ch/labs/d-vet/">ML4Ed Lab</a> and Prof. Martin Jaggi at the <a href="https://www.epfl.ch/labs/mlo/">MLO Lab</a>. Currently, I serve as the President of <a href="https://www.epfl.ch/campus/associations/list/epic/">the EPFL PhDs of IC (EPIC)</a> and <a href="https://www.epfl.ch/education/phd/programs/edoc-student-representatives/">PhD representative elect</a> for the Computer Science department.</p>
+              <p>Hello! I am an AI researcher and PhD student working on deep learning model explainability at <a href="https://www.epfl.ch/">École Polytechnique Fédérale de Lausanne (EPFL)</a>. I'm coadvised by Prof. Tanja Käser at the <a href="https://www.epfl.ch/labs/d-vet/">ML4Ed Lab</a> and Prof. Martin Jaggi at the <a href="https://www.epfl.ch/labs/mlo/">MLO Lab</a>. On campus, I serve as <a href="https://www.epfl.ch/education/phd/programs/edoc-student-representatives/">PhD representative elect</a> for the computer science department and <a href='https://www.epfl.ch/campus/associations/list/polydoc/'>VP of PolyDoc</a> for all PhD students.</p>
 
               <p>Before moving to Switzerland, I worked for two years at <img class="mx-auto mb-1" src="img/msft.png" alt="" width="18"> Microsoft AI as a lead engineer for the <a href="http://onnx.ai">Open Neural Network eXchange project</a>.</p>
 
@@ -169,6 +169,7 @@
               <h3 class="mb-0">Reviewer / Program Committee </h3>
               <p>AIED Program Committee 2023
                 <br> EMNLP BlackBoxNLP 2021, 2022 
+                <br> EACL 2022
                 <br> LAK 2022*, 2023* (Subreviewer for Tanja Käser)
                 <br> AIED 2021*, 2022* (Subreviewer for Tanja Käser)
                 <br> Journal of Educational Data Mining (JEDM) 2022 
@@ -186,11 +187,28 @@
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
+              <h3 class="mb-0">Ripple: Concept-Based Interpretation for Raw Time Series Models in Education
+              </h3>
+              <div class="subheading mb-3">École Polytechnique Fédérale de Lausanne (EPFL)</div>
+              <p> We propose an approach that utilizes irregular multivariate time series modeling with graph neural networks to achieve comparable or better accuracy with raw time series clickstreams in comparison to hand-crafted features. Furthermore, we extend concept activation vectors for interpretability in raw time series models. We analyze these advances in the education domain, addressing the task of early student performance prediction for downstream targeted interventions and instructional support. Our experimental analysis on 23 MOOCs with millions of combined interactions over six behavioral dimensions show that models designed with our approach can (i) beat state-of-the-art educational time series baselines with no feature extraction and (ii) provide interpretable insights for personalized interventions.
+              </p>
+              <p> Authors: Mohammad Asadi (intern), Vinitra Swamy, Jibril Frej, Julien Vignoud, Mirko Marras, Tanja Käser. Talk and paper featured at <a href="https://aaai-23.aaai.org/">AAAI 2023 (EAAI Symposium)</a> in Washington, DC. </p>
+               [<a href="https://arxiv.org/abs/2212.01133">Pre-Print</a>] [<a href="files/PDF_AAAI2023_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/ripple/">Code</a>]</p>
+            </div>
+
+            <div class="resume-date text-md-right">
+              <span class="text-primary">2022</span>
+            </div>
+
+          </div>
+
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
               <h3 class="mb-0">Evaluating the Explainers: A Comparison of Explainable Machine Learning for Success Prediction in MOOCs
               </h3>
               <div class="subheading mb-3">École Polytechnique Fédérale de Lausanne (EPFL)</div>
               <p> We implement five state-of-the-art methodologies for explaining black-box machine learning models (LIME, PermutationSHAP, KernelSHAP, DiCE, CEM) on the downstream task of student performance prediction for five massive open online courses. Our experiments demonstrate that the families of explainers <b>do not agree</b> with each other on feature importance for the same Bidirectional LSTM models with the same representative set of students. We use Principal Component Analysis, Jensen-Shannon distance, and Spearman's rank-order correlation to quantitatively cross-examine explanations across methods and courses. Our results come to the concerning conclusion that the choice of explainer is an important decision and is in fact paramount to the interpretation of the predictive results, even more so than the course the model is trained on.</p>
-              <p> Authors: Vinitra Swamy, Bahar Radhmehr, Natasa Krco, Professor Mirko Marras, and Professor Tanja Käser. Talk and paper will be featured at <a href="https://educationaldatamining.org/edm2022/">Educational Data Mining (EDM) 2022</a> in Durham, UK. </p>
+              <p> Authors: Vinitra Swamy, Bahar Radhmehr, Natasa Krco, Professor Mirko Marras, and Professor Tanja Käser. Talk and paper featured at <a href="https://educationaldatamining.org/edm2022/">Educational Data Mining (EDM) 2022</a> in Durham, UK. </p>
               [<a href="https://educationaldatamining.org/edm2022/proceedings/2022.EDM-long-papers.9/2022.EDM-long-papers.9.pdf">Paper</a>] [<a href="https://arxiv.org/abs/2207.00551">Pre-Print</a>] [<a href="files/PDF_EDM2022_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/evaluating-explainers">Code</a>]</p>
             </div>
 
@@ -205,7 +223,7 @@
               <h3 class="mb-0">Meta Transfer Learning for Early Success Prediction in MOOCs</h3>
               <div class="subheading mb-3">École Polytechnique Fédérale de Lausanne (EPFL)</div>
               <p> We tackle the problem of transferability across MOOCs from different domains and topics, focusing on models for early success prediction. In this paper, we present and analyze three novel strategies to creating generalizable models: 1) pre-training a model on a large set of diverse courses, 2) leveraging the pre-trained model by including meta features about courses to orient downstream tasks, and 3) fine-tuning the meta transfer learning model on previous course iterations. Our experiments on 26 MOOCs with over 145,000 combined enrollments and millions of interactions show that models combining interaction data and course information have comparable or better performance than models which have access to previous iterations of the course. With these models, we aim to effectively enable educators to warm-start their predictions for new and ongoing courses.</p>
-              <p> Authors: Vinitra Swamy, Professor Mirko Marras, and Professor Tanja Käser. Talk and paper will be featured at <a href="https://learningatscale.acm.org/las2022/">ACM Learning @ Scale 2022</a> in NYC. </p>
+              <p> Authors: Vinitra Swamy, Professor Mirko Marras, and Professor Tanja Käser. Talk and paper published at <a href="https://learningatscale.acm.org/las2022/">ACM Learning @ Scale 2022</a> in NYC. </p>
               [<a href="https://dl.acm.org/doi/10.1145/3491140.3528273">Paper</a>] [<a href="https://arxiv.org/abs/2205.01064">Pre-Print</a>] [<a href="files/PDF_L@S2022_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/meta-transfer-learning">Code</a>] </p>
             </div>
 
