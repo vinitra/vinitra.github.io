@@ -162,60 +162,76 @@
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
-              <h3 class="mb-0">Organizing Team</h3>
-              <p><a href="http://fated2022.github.io">FATED Workshop Co-Chair</a> @ <a href="files/2022.EDM-workshop-tutorials.114.pdf">EDM 2022</a> <br>
-              <a href="https://wimlworkshop.org/">WiML Program Chair </a> @ ICML 2022 </p>
 
-              <h3 class="mb-0">Reviewer / Program Committee </h3>
-              <p>AIED Program Committee 2023
-                <br> AIED 2021*, 2022* (Subreviewer for Tanja Käser)
-                <br> EMNLP BlackBoxNLP 2021, 2022, 2023
-                <br> EACL 2022
-                <br> EDM 2023
-                <br> Journal of Educational Data Mining (JEDM) 2022 
-                <br> LAK 2022*, 2023* (Subreviewer for Tanja Käser)
-                <br> Editor for Springer Series on Big Data Management (Educational Data Science) </p>
+              <h3 class="mb-0">MultiModN (NeurIPS 2023)</h3>
+              <div class="subheading mb-3">Vinitra Swamy*, Malika Satayeva*, Jibril Frej, Thierry Bossy, Thijs Vogels, Martin Jaggi, Tanja Käser*, Mary-Anne Hartley*</div>            
+              
+              <p> We present MultiModN, a multimodal, modular network that fuses latent representations in a sequence of any number, combination, or type of modality while providing granular real-time predictive feedback on any number or combination of predictive tasks. <b>MultiModN's composable pipeline is interpretable-by-design, as well as innately multi-task and robust to the fundamental issue of biased missingness.</b> We perform four experiments on several benchmark MM datasets across 10 real-world tasks (predicting medical diagnoses, academic performance, and weather), and show that MultiModN's sequential MM fusion does not compromise performance compared with a baseline of parallel fusion.</p>
+              [<a href="https://arxiv.org/abs/2309.141181">Pre-Print</a>] [<a href="https://github.com/epfl-iglobalhealth/multimodn">Code</a>]</p>
+              
 
-              <h3 class="mb-0">Working Groups</h3>
-              <p>Fairness Working Group @ EDM 2022 <br> WiML Workshop Team @ NeurIPS 2021 <br> Lead of the 2020 ONNX SIG for Models and Tutorials </p>
-            </div>
+              </div>
+              <div class="resume-date text-md-right">
+                <span class="text-primary">2023</span>
+              </div> 
+              </div>  
 
-            <div class="resume-date text-md-right">
-              <span class="text-primary">2022</span>
-            </div>
-
-          </div>
+            <div class="resume-item d-flex flex-column flex-md-row mb-5">
+              <div class="resume-content mr-auto">
+  
+                <h3 class="mb-0">Viewpoint: Future of Human-Centric XAI (Submitted to JAIR)</h3>
+                <div class="subheading mb-3">Vinitra Swamy, Jibril Frej, Tanja Käser</div>            
+                
+                <p> Current approaches in human-centric XAI (e.g. predictive tasks in healthcare, education, or personalized ads) tend to rely on a single explainer. This is a concerning trend given systematic disagreement in explainability methods applied to the same points and underlying black-box models. We propose to shift from post-hoc explainability to designing interpretable neural network architectures; moving away from approximation techniques in human-centric and high impact applications. We <b>identify five needs of human-centric XAI (real-time, accurate, actionable, human-interpretable, and consistent) and propose two schemes for interpretable-by-design neural network workflows</b> (adaptive routing for interpretable conditional computation and diagnostic benchmarks for iterative model learning). We postulate that the future of human-centric XAI is neither in explaining black-boxes nor in reverting to traditional, interpretable models, but in neural networks that are intrinsically interpretable.
+                </p>
+                [<a href="https://arxiv.org/abs/2307.00364">Pre-Print</a>]</p>
+                
+  
+                </div>
+                <div class="resume-date text-md-right">
+                  <span class="text-primary">2023</span>
+                </div> 
+                </div>  
 
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
-              <h3 class="mb-0">Explainable AI for Education</h3>
-              <br>
-              <div class="subheading mb-3">Evaluating the Explainers: A Comparison of Explainable Machine Learning for Success Prediction in MOOCs</div>
-              <p> We implement five state-of-the-art methodologies for explaining black-box machine learning models (LIME, PermutationSHAP, KernelSHAP, DiCE, CEM) on the downstream task of student performance prediction for five massive open online courses. Our experiments demonstrate that the families of explainers <b>do not agree</b> with each other on feature importance for the same Bidirectional LSTM models with the same representative set of students. We use Principal Component Analysis, Jensen-Shannon distance, and Spearman's rank-order correlation to quantitatively cross-examine explanations across methods and courses. Our results come to the concerning conclusion that the choice of explainer is an important decision and is in fact paramount to the interpretation of the predictive results, even more so than the course the model is trained on.</p>
-              <p> Authors: Vinitra Swamy, Bahar Radhmehr, Natasa Krco, Professor Mirko Marras, and Professor Tanja Käser. Talk and paper featured at <a href="https://educationaldatamining.org/edm2022/">Educational Data Mining (EDM) 2022</a> in Durham, UK. </p>
-              [<a href="https://educationaldatamining.org/edm2022/proceedings/2022.EDM-long-papers.9/2022.EDM-long-papers.9.pdf">Paper</a>] [<a href="https://arxiv.org/abs/2207.00551">Pre-Print</a>] [<a href="files/PDF_EDM2022_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/evaluating-explainers">Code</a>]</p>
 
-              <div class="subheading mb-3">Trusting the Explainers: Teacher Validation of Explainable Artificial Intelligence for Course Design</div>
-              <p> Our goal is to validate explainers for student success prediction across controlled differences in online and blended learning course design. Our analyses cover five course pairs that differ in one educationally relevant aspect and two popular instance-based explainable AI methods (LIME and SHAP). We quantitatively compare the distances between the explanations across courses and methods, then validate the explanations of LIME and SHAP with 26 semi-structured interviews of university-level educators regarding which features they believe contribute most to student success, which explanations they trust most, and how they could transform these insights into actionable course design decisions. Our results show that quantitatively, explainers significantly disagree with each other about what is important, and qualitatively, experts themselves do not agree on which explanations are most trustworthy.</p>
-              <p> Authors: Vinitra Swamy, Sijia Du, Professor Mirko Marras, and Professor Tanja Käser. <b>Nominated for best full paper</b> at <a href="https://www.solaresearch.org/events/lak/lak23/">Learning Analytics and Knowledge (LAK) 2023</a> in Arlington, Texas. </p>
+              <h3 class="mb-0">Evaluating the Explainers (EDM 2022)</h3>
+              <div class="subheading mb-3">Vinitra Swamy, Bahar Radhmehr, Natasa Krco, Mirko Marras, and Tanja Käser</div>            
+              
+              <p> We compare five explainers for black-box neural nets (LIME, PermutationSHAP, KernelSHAP, DiCE, CEM) on the downstream task of student performance prediction for five massive open online courses. Our experiments demonstrate that the families of explainers <b>do not agree</b> with each other on feature importance for the same Bidirectional LSTM models with the same representative set of students. We use Principal Component Analysis, Jensen-Shannon distance, and Spearman's rank-order correlation to quantitatively cross-examine explanations across methods and courses. <b>Our results come to the concerning conclusion that the choice of explainer contains systematic bias and is in fact paramount to the interpretation of the predictive results, even more so than the data the model is trained on.</b></p>
+              [<a href="https://educationaldatamining.org/edm2022/proceedings/2022.EDM-long-papers.9/2022.EDM-long-papers.9.pdf">Paper</a>] [<a href="https://arxiv.org/abs/2207.00551">Pre-Print</a>] [<a href="files/PDF_EDM2022_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/evaluating-explainers">Code</a>]</p>
+              
+
+              </div>
+              <div class="resume-date text-md-right">
+                <span class="text-primary">2022</span>
+              </div> 
+              </div>       
+          
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Trusting the Explainers (LAK 2023, Honorable Mention)</h3>
+              <div class="subheading mb-3">Vinitra Swamy, Sijia Du, Mirko Marras, and Tanja Käser</div>
+              
+              <p> We use human experts to validate explainable AI approaches in the context of student success prediction. Our pairwise analyses cover five course pairs (nine datasets from Coursera, EdX, and Courseware) that differ in one educationally relevant aspect and popular instance-based explainers. We quantitatively compare the distances between the explanations across courses and methods, then validate the explanations of LIME, SHAP, and a counterfactual-based confounder with 26 semi-structured interviews of university-level educators regarding which features they believe contribute most to student success, which explanations they trust most, and how they could transform these insights into actionable course design decisions. <b>Our results show that quantitatively, explainers significantly disagree with each other about what is important, and qualitatively, experts themselves do not agree on which explanations are most trustworthy.</b></p>
               [<a href="https://dl.acm.org/doi/10.1145/3576050.3576147">Paper</a>] [<a href="https://arxiv.org/abs/2212.08955">Pre-Print</a>] [<a href="https://github.com/epfl-ml4ed/trusting-explainers">Code</a>]</p>
             </div>
-
             <div class="resume-date text-md-right">
-              <span class="text-primary">2022, 2023</span>
+              <span class="text-primary">2023</span>
+            </div>
             </div>
 
-          </div>
+
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
-              <h3 class="mb-0">Ripple: Concept-Based Interpretation for Raw Time Series Models
+              <h3 class="mb-0">Ripple: Concept-Based Interpretation for Raw Time Series (AAAI 2023)
               </h3>
-              <div class="subheading mb-3">École Polytechnique Fédérale de Lausanne (EPFL)</div>
-              <p> RIPPLE utilizes irregular multivariate time series modeling with graph neural networks to achieve comparable or better accuracy with raw time series clickstreams in comparison to hand-crafted features. Furthermore, we extend concept activation vectors for interpretability in raw time series models. Our experimental analysis on 23 MOOCs with millions of combined interactions over six behavioral dimensions show that models designed with our approach can (i) beat state-of-the-art educational time series baselines with no feature extraction and (ii) provide interpretable insights for personalized interventions.
+              <div class="subheading mb-3">Mohammad Asadi (intern), Vinitra Swamy, Jibril Frej, Julien Vignoud, Mirko Marras, Tanja Käser</div>
+              <p> We present RIPPLE, utilizing irregular multivariate time series modeling with graph neural networks to achieve comparable or better accuracy with raw time series clickstreams in comparison to hand-crafted features. Furthermore, we extend concept activation vectors for interpretability in raw time series models. Our experimental analysis on 23 MOOCs with millions of combined interactions over six behavioral dimensions show that <b>models designed with our approach can (i) beat state-of-the-art time series baselines with no feature extraction and (ii) provide interpretable insights for personalized interventions</b>.
               </p>
-              <p> Authors: Mohammad Asadi (intern), Vinitra Swamy, Jibril Frej, Julien Vignoud, Mirko Marras, Tanja Käser. Talk and paper featured at <a href="https://aaai-23.aaai.org/">AAAI 2023</a> in Washington, DC. </p>
                [<a href="https://ojs.aaai.org/index.php/AAAI/article/view/26888">Paper</a>] [<a href="https://arxiv.org/abs/2212.01133">Pre-Print</a>] [<a href="files/PDF_AAAI2023_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/ripple/">Code</a>]</p>
             </div>
 
@@ -228,10 +244,9 @@
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
-              <h3 class="mb-0">Meta Transfer Learning for Early Success Prediction in MOOCs</h3>
-              <div class="subheading mb-3">École Polytechnique Fédérale de Lausanne (EPFL)</div>
-              <p> We tackle the problem of transferability across MOOCs from different domains and topics, focusing on models for early success prediction. In this paper, we present and analyze three novel strategies to creating generalizable models: 1) pre-training a model on a large set of diverse courses, 2) leveraging the pre-trained model by including meta features about courses to orient downstream tasks, and 3) fine-tuning the meta transfer learning model on previous course iterations. Our experiments on 26 MOOCs with over 145,000 combined enrollments and millions of interactions show that models combining interaction data and course information have comparable or better performance than models which have access to previous iterations of the course. With these models, we aim to effectively enable educators to warm-start their predictions for new and ongoing courses.</p>
-              <p> Authors: Vinitra Swamy, Professor Mirko Marras, and Professor Tanja Käser. Talk and paper published at <a href="https://learningatscale.acm.org/las2022/">ACM Learning @ Scale 2022</a> in NYC. </p>
+              <h3 class="mb-0">Meta Transfer Learning (ACM L@S 2022)</h3>
+              <div class="subheading mb-3">Vinitra Swamy, Mirko Marras, and Tanja Käser</div>
+              <p> We tackle the problem of transferability across MOOCs from different domains and topics, focusing on models for early success prediction. In this paper, we present and analyze three novel strategies to creating generalizable models: 1) pre-training a model on a large set of diverse courses, 2) leveraging the pre-trained model by including meta features about courses to orient downstream tasks, and 3) fine-tuning the meta transfer learning model on previous course iterations. Our experiments on 26 MOOCs with over 145,000 combined enrollments and millions of interactions show that <b>models combining interaction clickstreams and meta information have comparable or better performance than models which have access to previous iterations of the course</b>. With these models, we enable educators to <b>warm-start their predictions</b> for new and ongoing courses.</p>
               [<a href="https://dl.acm.org/doi/10.1145/3491140.3528273">Paper</a>] [<a href="https://arxiv.org/abs/2205.01064">Pre-Print</a>] [<a href="files/PDF_L@S2022_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/meta-transfer-learning">Code</a>] </p>
             </div>
 
@@ -244,10 +259,10 @@
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
-              <h3 class="mb-0">Interpreting Language Models Through Knowledge Graph Extraction</h3>
-              <div class="subheading mb-3">École Polytechnique Fédérale de Lausanne (EPFL)</div>
-              <p> While transformer-based language models are undeniably useful, it is a challenge to quantify their performance beyond traditional accuracy metrics. In this paper, we compare BERT-based language models (DistilBERT, BERT, RoBERTa) through snapshots of acquired knowledge at sequential stages of the training process. We contribute a quantitative framework to compare language models through knowledge graph extraction and showcase a part-of-speech analysis to identify the linguistic strengths of each model variant. Using these metrics, machine learning practitioners can compare models, diagnose their models' behavioral strengths and weaknesses, and identify new targeted datasets to improve model performance.</p>
-              <p> Authors: Vinitra Swamy, Angelika Romanou, and Professor Martin Jaggi. Talk, poster, and paper published at eXplainable AI for Debugging and Diagnosis at <a href="https://xai4debugging.github.io/">NeurIPS 2021</a>. </p>
+              <h3 class="mb-0">Interpreting LMs Through KG Extraction (NeurIPS 2021)</h3>
+              <div class="subheading mb-3">Vinitra Swamy, Angelika Romanou, and Martin Jaggi</div>
+              <p> While transformer-based language models are undeniably useful, it is a challenge to quantify their performance beyond traditional accuracy metrics. In this paper, we compare BERT-based language models (DistilBERT, BERT, RoBERTa) through snapshots of acquired knowledge at sequential stages of the training process. We contribute a quantitative framework to compare language models through knowledge graph extraction and showcase a part-of-speech analysis to identify the linguistic strengths of each model variant. Using these metrics, machine learning practitioners can <b>compare models, diagnose their models' behavioral strengths and weaknesses, and identify new targeted datasets to improve model performance</b>.</p>
+              <p> Published at eXplainable AI for Debugging and Diagnosis Workshop at <a href="https://xai4debugging.github.io/">NeurIPS 2021</a>. </p>
               [<a href="https://xai4debugging.github.io/files/papers/interpreting_language_models_t.pdf">Paper</a>] [<a href="files/Poster_NeurIPS2021_InterpretingLanguageModels.pdf">Poster</a>] [<a href="https://github.com/epfml/interpret-lm-knowledge">Code</a>]</p>
             </div>
 
@@ -275,6 +290,8 @@
             <div class="resume-date text-md-right">
               <span class="text-primary">2020</span>
             </div>
+
+          
 
           </div>
 
@@ -304,12 +321,12 @@
               <p> A detailed research report on autograding, analytics, and scaling JupyterHub infrastructure highlighted in use for thousands of students taking <a href="http://data8.org">Data 8</a> at UC Berkeley. Presented as a graduate student affiliated with <a href="https://rise.cs.berkeley.edu/blog/author/vinitra/">RISELab</a>.</p>
               <p>[<a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2018/EECS-2018-81.html">Thesis</a>] </p>
               <br>
-              <div class="subheading mb-3">Deep Knowledge Tracing for Student Code Progression</div>
-              <p>Knowledge Tracing is a body of learning science literature that seeks to model student knowledge acquisition through their interaction with coursework. This project uses a recurrent neural network (LSTM) to optimize prediction of student performance in large scale computer science classes.</p>
-              <p>Authors: Vinitra Swamy, Samuel Lau, Allen Guo, Madeline Wu, Wilton Wu, Professor Zachary Pardos, Professor David Culler on a short paper published at published at <a href="https://aied2018.utscic.edu.au/">Artificial Intelligence in Education</a> / International Festival of Learning 2018 in London, England.</p>
+              <div class="subheading mb-3">Deep Knowledge Tracing for Student Code Progression (AIED 2018)</div>
+              <p>Knowledge Tracing is a body of learning science literature that seeks to model student knowledge acquisition through their interaction with coursework. This project uses a recurrent neural network (LSTM) and free-form code attempts to model student knowledge in large scale computer science classes.</p>
+              <p>Authors: Vinitra Swamy, Samuel Lau, Allen Guo, Madeline Wu, Wilton Wu, Zachary Pardos, David Culler. Paper published at published at <a href="https://aied2018.utscic.edu.au/">Artificial Intelligence in Education</a> / International Festival of Learning 2018 in London, England.</p>
               <p>[<a href="https://link.springer.com/chapter/10.1007%2F978-3-319-93846-2_65">Paper</a>] [<a href="https://www.dropbox.com/s/pel677yohdqobwy/AIED_DKTCodeProgression_Poster%20%288%29.pdf?dl=0">Poster</a>]</p>
               <br>
-              <div class="subheading mb-3">Project Jupyter: Scaling JupyterHub architecture for Data 8</div>
+              <div class="subheading mb-3">Project Jupyter: Scaling JupyterHub for Data Science Education (JupyterCon 2017)</div>
               <p>Helped develop UC Berkeley data science's software infrastructure stack including JupyterHub, autograding with OkPy, Gradescope, and authentication for 1000s of students.</p>
               <p>[<a href="https://blog.jupyter.org/introducing-the-helm-chart-for-jupyterhub-deployment-with-kubernetes-b79bfd18566d">Blog</a>] [<a href="https://github.com/data-8">Code</a>] </p>
               <br>
@@ -319,6 +336,8 @@
             <div class="resume-date text-md-right">
               <span class="text-primary">2018</span>
             </div>
+          </div>
+          
           <!-- </div>
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
@@ -393,21 +412,10 @@
         </div> -->
 
       </section>
+
+
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
         <div class="my-auto">
-          <h2 class="mb-5">Industry Experience</h2>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Partner</h3>
-              <div class="subheading mb-3">Wingman Campus Fund</div>
-              <p> Partner of the Campus Fund, a student venture arm of Wingman Ventures. We evaluate and invest pre-seed in startups and learn about VC from talented mentors and entrepreneurs. The Campus Fund operates in Switzerland through ETH Zurich, EPFL and HSG.</p>
-              <p> [<a href="https://campusfund.ch/">Wingman Campus Fund</a>]</p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">2021</span>
-            </div>
-          </div>
 
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
@@ -559,13 +567,13 @@
               <ul class="fa-ul mb-0">
               <li>
                 <i class="fa-li fa fa-book text-warning"></i>
-                <b>Spring 2022</b>: TA for <a href="https://edu.epfl.ch/coursebook/en/applied-data-analysis-CS-401">CS 421 - Machine Learning for Behavioral Data</a> with Prof. Tanja Käser</li>
+                <b>Spring 2022, 2023</b>: TA for <a href="https://edu.epfl.ch/coursebook/en/applied-data-analysis-CS-401">CS 421 - Machine Learning for Behavioral Data</a> with Tanja Käser</li>
               <li>
                 <i class="fa-li fa fa-book text-warning"></i>
-                <b>Fall 2021</b>: TA for <a href="https://edu.epfl.ch/coursebook/en/applied-data-analysis-CS-401">CS 401 - Applied Data Analysis</a> with Prof. Bob West</li>
+                <b>Fall 2021</b>: TA for <a href="https://edu.epfl.ch/coursebook/en/applied-data-analysis-CS-401">CS 401 - Applied Data Analysis</a> with Bob West</li>
               <li>
                 <i class="fa-li fa fa-book text-warning"></i>
-                <b>Spring 2021</b>: TA for <a href="https://edu.epfl.ch/coursebook/en/introduction-to-database-systems-CS-322">CS 322 - Introduction to Database Systems</a> with Prof. Anastasia Alaimaki and Christoph Koch</li>
+                <b>Spring 2021</b>: TA for <a href="https://edu.epfl.ch/coursebook/en/introduction-to-database-systems-CS-322">CS 322 - Introduction to Database Systems</a> with Anastasia Alaimaki and Christoph Koch</li>
               </ul>
               <br>
             </div>
@@ -628,7 +636,35 @@
               <span class="text-primary">2016 - 2018</span>
             </div>
           </div>
-      </section>
+
+      <div class="resume-item d-flex flex-column flex-md-row mb-5">
+        <div class="resume-content mr-auto">
+          <h3 class="mb-0">Organizing Team</h3>
+          <p></p><a href="https://wimlworkshop.org/">WiML Program Chair </a> @ ICML 2022 </p>
+          <p><a href="http://fated2022.github.io">FATED Workshop Co-Chair</a> @ <a href="files/2022.EDM-workshop-tutorials.114.pdf">EDM 2022</a> <br>
+
+          <h3 class="mb-0">Reviewer / Program Committee </h3>
+          <p>AIED Program Committee 2023
+            <br> AIED 2021*, 2022* (Subreviewer for Tanja Käser)
+            <br> EMNLP BlackBoxNLP 2021, 2022, 2023
+            <br> EACL 2022
+            <br> EDM 2023
+            <br> Journal of Educational Data Mining (JEDM) 2022 
+            <br> LAK 2022*, 2023* (Subreviewer for Tanja Käser)
+            <br> Editor for Springer Series on Big Data Management (Educational Data Science) </p>
+
+          <h3 class="mb-0">Working Groups</h3>
+          <p>Fairness Working Group @ EDM 2022 <br> WiML Workshop Team @ NeurIPS 2021 <br> Lead of the 2020 ONNX SIG for Models and Tutorials </p>
+        </div>
+
+        <div class="resume-date text-md-right">
+          <span class="text-primary">2023</span>
+        </div>
+
+      </div>
+
+    </section>
+
 
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="awards">
         <div class="my-auto">
