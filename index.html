@@ -201,7 +201,7 @@
   
                 <h3 class="mb-0">Viewpoint: Future of Human-Centric XAI (Submitted to JAIR)</h3>
                 <div class="subheading mb-3">Vinitra Swamy, Jibril Frej, Tanja Käser</div>            
-                <details><summary>Defining five needs of human-centric XAI</summary>
+                <details><summary>Defining XAI needs for human-centric applications (healthcare, education, etc.) </summary>
                 <br>
                 <p> Current approaches in human-centric XAI (e.g. predictive tasks in healthcare, education, or personalized ads) tend to rely on a single explainer. This is a concerning trend given systematic disagreement in explainability methods applied to the same points and underlying black-box models. We propose to shift from post-hoc explainability to designing interpretable neural network architectures; moving away from approximation techniques in human-centric and high impact applications. We <b>identify five needs of human-centric XAI (real-time, accurate, actionable, human-interpretable, and consistent) and propose two schemes for interpretable-by-design neural network workflows</b> (adaptive routing for interpretable conditional computation and diagnostic benchmarks for iterative model learning). We postulate that the future of human-centric XAI is neither in explaining black-boxes nor in reverting to traditional, interpretable models, but in neural networks that are intrinsically interpretable.
                 </p>
@@ -266,13 +266,31 @@
             </div>
 
           </div>
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+
+              <h3 class="mb-0">Bias at a Second Glance (COLING 2022)</h3>
+              <div class="subheading mb-3">Thiemo Wambsganss, Vinitra Swamy, Roman Rietsche, Tanja Käser
+              </div>            
+              <details><summary>Measuring bias propogation in LLMs using Swiss-German student peer-reviews</summary>
+              <br>
+              <p>We analyze bias across text and through multiple architectures on a corpus of 9,165 German peer-reviews collected from university students over five years. Notably, our corpus includes labels such as helpfulness, quality, and critical aspect ratings from the peer-review recipient as well as demographic attributes. We conduct a Word Embedding Association Test (WEAT) analysis on (1) our collected corpus in connection with the clustered labels, (2) the most common pre-trained German language models (T5, BERT, and GPT-2) and GloVe embeddings, and (3) the language models after fine-tuning on our collected data-set. In contrast to our initial expectations, we found that our collected corpus does not reveal many biases in the co-occurrence analysis or in the GloVe embeddings. However, <b>the pre-trained German language models find substantial conceptual, racial, and gender bias and have significant changes in bias across conceptual and racial axes during fine-tuning</b> on the peer-review data. With our research, we aim to contribute to the fourth UN sustainability goal (quality education) with a novel dataset, an understanding of biases in natural language education data, and the potential harms of not counteracting biases in language models for educational tasks.
+              </p>
+              [<a href="https://aclanthology.org/2022.coling-1.115/">Paper</a>]  [<a href="https://arxiv.org/abs/2209.10335">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/bias-at-a-second-glance">Code + Data</a>]</p>
+              </details>
+
+              </div>
+              <div class="resume-date text-md-right">
+                <span class="text-primary">2022</span>
+              </div> 
+              </div>       
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
 
               <h3 class="mb-0">Evaluating the Explainers (EDM 2022)</h3>
-              <div class="subheading mb-3">Vinitra Swamy, Bahar Radhmehr, Natasa Krco, Mirko Marras, and Tanja Käser</div>            
-              <details><summary>Empirical demonstration of systematic disagreement in post-hoc explainers</summary>
+              <div class="subheading mb-3">Vinitra Swamy, Bahar Radhmehr, Natasa Krco, Mirko Marras, Tanja Käser</div>            
+              <details><summary>Evaluation of systematic disagreement in post-hoc explainers for education</summary>
               <br>
               <p> We compare five explainers for black-box neural nets (LIME, PermutationSHAP, KernelSHAP, DiCE, CEM) on the downstream task of student performance prediction for five massive open online courses. Our experiments demonstrate that the families of explainers <b>do not agree</b> with each other on feature importance for the same Bidirectional LSTM models with the same representative set of students. We use Principal Component Analysis, Jensen-Shannon distance, and Spearman's rank-order correlation to quantitatively cross-examine explanations across methods and courses. <b>Our results come to the concerning conclusion that the choice of explainer contains systematic bias and is in fact paramount to the interpretation of the predictive results, even more so than the data the model is trained on.</b></p>
               [<a href="https://educationaldatamining.org/edm2022/proceedings/2022.EDM-long-papers.9/2022.EDM-long-papers.9.pdf">Paper</a>] [<a href="https://arxiv.org/abs/2207.00551">Pre-Print</a>] [<a href="files/PDF_EDM2022_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/evaluating-explainers">Code</a>]</p>
@@ -287,7 +305,7 @@
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
               <h3 class="mb-0">Meta Transfer Learning (ACM L@S 2022)</h3>
-              <div class="subheading mb-3">Vinitra Swamy, Mirko Marras, and Tanja Käser</div>
+              <div class="subheading mb-3">Vinitra Swamy, Mirko Marras, Tanja Käser</div>
               <details><summary>Generalizable models for early success prediction in MOOCs</summary>
               <br>
               <p> We tackle the problem of transferability across MOOCs from different domains and topics, focusing on models for early success prediction. In this paper, we present and analyze three novel strategies to creating generalizable models: 1) pre-training a model on a large set of diverse courses, 2) leveraging the pre-trained model by including meta features about courses to orient downstream tasks, and 3) fine-tuning the meta transfer learning model on previous course iterations. Our experiments on 26 MOOCs with over 145,000 combined enrollments and millions of interactions show that <b>models combining interaction clickstreams and meta information have comparable or better performance than models which have access to previous iterations of the course</b>. With these models, we enable educators to <b>warm-start their predictions</b> for new and ongoing courses.</p>
@@ -305,8 +323,8 @@
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
               <h3 class="mb-0">Interpreting LMs Through KG Extraction (NeurIPS XAI 2021)</h3>
-              <div class="subheading mb-3">Vinitra Swamy, Angelika Romanou, and Martin Jaggi</div>
-              <details><summary>Global explainability for LLMs through temporal extraction of knowledge graphs.</summary>
+              <div class="subheading mb-3">Vinitra Swamy, Angelika Romanou, Martin Jaggi</div>
+              <details><summary>Global explainability for LLMs through temporal extraction of knowledge graphs</summary>
               <br>
               <p> While transformer-based language models are undeniably useful, it is a challenge to quantify their performance beyond traditional accuracy metrics. In this paper, we compare BERT-based language models (DistilBERT, BERT, RoBERTa) through snapshots of acquired knowledge at sequential stages of the training process. We contribute a quantitative framework to compare language models through knowledge graph extraction and showcase a part-of-speech analysis to identify the linguistic strengths of each model variant. Using these metrics, machine learning practitioners can <b>compare models, diagnose their models' behavioral strengths and weaknesses, and identify new targeted datasets to improve model performance</b>.</p>
               <p> Published at eXplainable AI for Debugging and Diagnosis Workshop at <a href="https://xai4debugging.github.io/">NeurIPS 2021</a>. </p>
@@ -324,7 +342,7 @@
             <div class="resume-content mr-auto">
               <h3 class="mb-0">ONNX: Open Neural Network eXchange (Microsoft AI)</h3>
               <br>
-              <details><summary>Open source standard for machine learning interoperability.</summary>
+              <details><summary>Open source standard for ML model interoperability</summary>
               <br>
               <p> Open Neural Network Exchange (<a href="http://onnx.ai">ONNX</a>) is an open source ecosystem for machine learning interoperability, empowering AI developers to choose the right tools as their project evolves. Founded by Microsoft and Facebook, and now supported by over 30 other companies, ONNX defines a common set of operators - the building blocks of machine learning and deep learning models - and a common file format to enable AI developers to use models with a variety of frameworks, tools, runtimes, and compilers. 
               In addition to the code and model contributions, we presented several research talks about model operationalization and acceleration with ONNX and ONNX Runtime at Microsoft MLADS (ML, AI, Data Science Conference) and UW eScience Institute. </p>
@@ -341,8 +359,8 @@
             <div class="resume-content mr-auto">
               <h3 class="mb-0">ML for Humanitarian Data: Tag Prediction using the HXL Standard (KDD 2019)</h3>
               <div class="subheading mb-3"> Vinitra Swamy (Microsoft AI), Elisa Chen, Anish Vankayalapati, Abhay Aggarwal, Chloe Liu (UC Berkeley), Vani Mandava (MSR), Simon Johnson (UN)</div>
-              <details><summary>A case study in NLP for humanitarian data interoperability.</summary>
-
+              <details><summary>A case study in NLP for humanitarian data interoperability</summary>
+              <br>
               <p> We present a simple yet effective machine learning model to predict tags for datasets from the United Nations Office for the Coordination of Humanitarian Affairs (<a href="https://www.unocha.org/">UN OCHA</a>) with the labels and attributes of the Humanitarian Exchange Language (<a href="http://hxlstandard.org/">HXL</a>) Standard for data interoperability. This paper details the methodology used to predict the corresponding tags and attributes for a given dataset with an accuracy of 94% for HXL header tags and an accuracy of 92% for descriptive attributes. Compared to previous work, our workflow provides a 14% accuracy increase and is a novel case study of using ML to enhance humanitarian data. </p>
               <p>[<a href="https://www.kdd.org/kdd2019/docs/Humanitarian_Data_tagging_KDD2019_SocialImpactTrack_HXLTagPrediction.pdf">Paper</a>] [<a href="https://www.dropbox.com/s/17vlx8gw01zil3u/Vinitra-KDD-HumDataPresentation.pptx?dl=0">Slides</a>]  [<a href="https://www.dropbox.com/s/1263fkgoe6x6vee/poster-hxl.pdf?dl=0">Poster</a>] [<a href="https://github.com/humanitarian-data-collaboration">Code</a>]</p>
               </details>
@@ -356,7 +374,8 @@
             <div class="resume-content mr-auto">
               <h3 class="mb-0">Pedagogy, Infrastructure, and Analytics for Data Science Education at Scale (MSc Thesis) </h3>
               <div class="subheading mb-3"> Vinitra Swamy, David Culler</div>
-              <details><summary>Tools for scaling data science course offerings from 100 to 1500 students a semester. </summary>
+              <details><summary>Tools for scaling data science course offerings from 100 to 1500 students a semester </summary>
+              <br>
               <p> A detailed research report on autograding, analytics, and scaling JupyterHub infrastructure highlighted in use for thousands of students taking <a href="http://data8.org">Data 8</a> at UC Berkeley. Thesis presented as a graduate student affiliated with <a href="https://rise.cs.berkeley.edu/blog/author/vinitra/">RISELab</a>, after helping develop UC Berkeley data science's software infrastructure stack including JupyterHub, autograding with OkPy, Gradescope, and authentication for 1000s of students. Collaborated with Yuvi Panda, Ryan Lovett, Chris Holdgraf, and Gunjan Baid on a talk detailing the infrastructure stack at JupyterCon 2017. </p>
               <p>[<a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2018/EECS-2018-81.html">Thesis</a>] [<a href="https://blog.jupyter.org/introducing-the-helm-chart-for-jupyterhub-deployment-with-kubernetes-b79bfd18566d">Blog</a>] [<a href="https://github.com/data-8">Code</a>] [<a href="https://cdn.oreillystatic.com/en/assets/1/event/271/Data%20science%20at%20UC%20Berkeley_%202%2C000%20undergraduates%2C%2050%20majors%2C%20no%20command%20line%20Presentation.pdf">JupyterCon Slides</a>] [<a href="https://conferences.oreilly.com/jupyter/jup-ny-2017/public/schedule/speaker/279664">JupyterCon Speaker Profile</a>]</p>
               </details>
@@ -370,7 +389,7 @@
             <div class="resume-content mr-auto">
               <h3 class="mb-0">Deep Knowledge Tracing for Student Code Progression (AIED 2018)</h3>
               <div class="subheading mb-3"> Vinitra Swamy, Samuel Lau, Allen Guo, Madeline Wu, Wilton Wu, Zachary Pardos, David Culler</div>
-              <details><summary>Modeling student learning through iterative code attempts in Jupyter notebooks.</summary>
+              <details><summary>Modeling student learning through iterative code attempts in Jupyter notebooks</summary>
               <br>
               <p>Knowledge Tracing is a body of learning science literature that seeks to model student knowledge acquisition through their interaction with coursework. This paper uses a recurrent neural network (LSTM) and free-form code attempts to model student knowledge in large scale computer science classes. This work has applications in hint generation for code assignments, student modeling, and plagiarism detection in interactive programming environments.</p>
               <p>[<a href="https://link.springer.com/chapter/10.1007%2F978-3-319-93846-2_65">Paper</a>] [<a href="https://www.dropbox.com/s/pel677yohdqobwy/AIED_DKTCodeProgression_Poster%20%288%29.pdf?dl=0">Poster</a>]</p>
@@ -689,8 +708,9 @@
       <div class="resume-item d-flex flex-column flex-md-row mb-5">
         <div class="resume-content mr-auto">
           <h3 class="mb-0">Organizing Team</h3>
-          <p><a href="https://wimlworkshop.org/">WiML Program Chair </a> @ ICML 2022 <br>
-          <a href="http://fated2022.github.io">FATED Workshop Co-Chair</a> @ <a href="files/2022.EDM-workshop-tutorials.114.pdf">EDM 2022</a></p>
+          <p><a href="https://hexed-workshop.github.io/">HEXED Workshop Organizer </a> @ EDM 2024 <br>
+          <a href="https://wimlworkshop.org/">WiML Program Chair </a> @ ICML 2022 <br>
+          <a href="http://fated2022.github.io">FATED Workshop Organizer</a> @ <a href="files/2022.EDM-workshop-tutorials.114.pdf">EDM 2022</a></p>
 
           <h3 class="mb-0">Reviewer / Program Committee </h3>
           <p>AIED Program Committee 2023, 2024
@@ -698,7 +718,7 @@
             <br> EMNLP BlackBoxNLP 2021, 2022, 2023
             <br> EACL 2022
             <br> EDM Program Committee 2023, 2034
-            <br> Journal of Educational Data Mining (JEDM) 2022 
+            <br> Journal of Educational Data Mining (JEDM) 2022, 2023 
             <br> LAK 2022*, 2023* (Subreviewer for Tanja Käser)
             <br> Editor for Springer Series on Big Data Management (Educational Data Science) </p>
 
