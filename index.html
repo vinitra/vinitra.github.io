@@ -163,8 +163,39 @@
         <div class="my-auto">
           <h2 class="mb-5">Selected Research</h2>
           <p>For a full list of publications, please visit my <a href="https://scholar.google.com/citations?hl=en&user=SX9GAqwAAAAJ">Google Scholar</a> page.</p>
+          <p>✨🎓 My PhD thesis on <a href="https://infoscience.epfl.ch/entities/publication/2dfd743f-90af-42c3-aa9b-efcc87686d29">"A Human-Centric Approach to Explainable AI for Personalized Education"</a> is now publicly available! 🎓 ✨</p>
           <br>
         
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+
+              <h3 class="mb-0">Intrinsic User-Centric Interpretability Through Global Mixture of Experts (ICLR 2025)</h3>
+              <div class="subheading mb-3">Vinitra Swamy, Syrielle Montariol, Julian Blackwell, Jibril Frej, Martin Jaggi, Tanja Käser</div>            
+
+              <p> We present InterpretCC (interpretable conditional computation), a <b>family of intrinsically interpretable neural networks at a unique point in the design space that optimizes for ease of human understanding and explanation faithfulness, while maintaining comparable performance to state-of-the-art models</b>. InterpretCC achieves this through adaptive sparse activation of features before prediction, allowing the model to use a different, minimal set of features for each instance. We extend this idea into an interpretable, global mixture-of-experts (MoE) model that allows users to specify topics of interest, discretely separates the feature space for each data point into topical subnetworks, and adaptively and sparsely activates these topical subnetworks for prediction. We apply InterpretCC for text, time series and tabular data across several real-world datasets, demonstrating <b>comparable performance with non-interpretable baselines and outperforming intrinsically interpretable baselines</b>. Through a user study involving 56 teachers, InterpretCC explanations are found to have higher actionability and usefulness over other intrinsically interpretable approaches. </p>
+
+              <p>[<a href="https://iclr.cc/virtual/2025/poster/27864">Paper</a>] [<a href="https://openreview.net/forum?id=wDcunIOAOk">OpenReview</a>] [<a href="https://arxiv.org/pdf/2402.02933.pdf">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/interpretcc/">Code</a>]</p>
+              </div>
+              <div class="resume-date text-md-right">
+                <span class="text-primary">2025</span>
+              </div> 
+              </div>  
+
+            <div class="resume-item d-flex flex-column flex-md-row mb-5">
+              <div class="resume-content mr-auto">
+  
+                <h3 class="mb-0">iLLuMinaTE: From Explanations to Action (AAAI 2025)</h3>
+                <div class="subheading mb-3">Vinitra Swamy*, Davide Romano*, Bhargav Srinivasa Desikan, Oana-Maria Camburu, Tanja Käser</div>            
+    
+                <p> We introduce iLLuMinaTE, a <b>zero-shot, chain-of-prompts LLM-XAI pipeline</b> inspired by Miller's cognitive model of explanation that ensures explanations for state-of-the-art AI models are understandable for non-technical users such as educators and students. iLLuMinaTE is designed to deliver theory-driven, actionable feedback to students in online courses. iLLuMinaTE navigates three main stages - causal connection, explanation selection, and explanation presentation - with variations drawing from eight social science theories (e.g. Abnormal Conditions, Pearl's Model of Explanation, Necessity and Robustness Selection, Contrastive Explanation). We extensively evaluate 21,915 natural language explanations of iLLuMinaTE extracted from three LLMs (GPT-4o, Gemma2-9B, Llama3-70B), with three different underlying XAI methods (LIME, Counterfactuals, MC-LIME), across students from three diverse online courses. Our evaluation involves analyses of explanation alignment to the social science theory, understandability of the explanation, and a <b>real-world user preference study with 114 university students containing a novel actionability simulation</b>. We find that students prefer iLLuMinaTE explanations over traditional explainers 89.52% of the time. 
+                </p>
+                <p>[<a href="https://ojs.aaai.org/index.php/AAAI/article/view/35065">Paper</a>]  [<a href="https://arxiv.org/pdf/2409.08027">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/iLLuMinaTE">Code</a>]  </p>
+                </div>
+                <div class="resume-date text-md-right">
+                  <span class="text-primary">2025</span>
+                </div> 
+                  </div> 
+
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
 
@@ -199,39 +230,6 @@
                     </div> 
                     </div>  
                     
-                    <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                      <div class="resume-content mr-auto">
-          
-                        <h3 class="mb-0">iLLuMinaTE: From Explanations to Action (AAAI 2025)</h3>
-                        <div class="subheading mb-3">Vinitra Swamy*, Davide Romano*, Bhargav Srinivasa Desikan, Oana-Maria Camburu, Tanja Käser</div>            
-                        <details><summary>iLLuMinaTE is a LLM-XAI framework that communicates explainable AI insights as actionable interventions for students</summary>
-                        <br>
-                        <p> Recent advances in eXplainable AI (XAI) for education have highlighted a critical challenge: ensuring that explanations for state-of-the-art AI models are understandable for non-technical users such as educators and students. In response, we introduce iLLuMinaTE, a zero-shot, chain-of-prompts LLM-XAI pipeline inspired by Miller's cognitive model of explanation. iLLuMinaTE is designed to deliver theory-driven, actionable feedback to students in online courses. iLLuMinaTE navigates three main stages - causal connection, explanation selection, and explanation presentation - with variations drawing from eight social science theories (e.g. Abnormal Conditions, Pearl's Model of Explanation, Necessity and Robustness Selection, Contrastive Explanation). We extensively evaluate 21,915 natural language explanations of iLLuMinaTE extracted from three LLMs (GPT-4o, Gemma2-9B, Llama3-70B), with three different underlying XAI methods (LIME, Counterfactuals, MC-LIME), across students from three diverse online courses. Our evaluation involves analyses of explanation alignment to the social science theory, understandability of the explanation, and a <b>real-world user preference study with 114 university students containing a novel actionability simulation</b>. We find that students prefer iLLuMinaTE explanations over traditional explainers 89.52% of the time. Our work provides a robust, ready-to-use framework for effectively communicating hybrid XAI-driven insights in education, with significant generalization potential for other human-centric fields.
-                        </p>
-                        <p>[<a href="https://arxiv.org/pdf/2409.08027">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/iLLuMinaTE">Code</a>]  </p>
-                        </details>
-                        </div>
-                        <div class="resume-date text-md-right">
-                          <span class="text-primary">2024</span>
-                        </div> 
-                        </div> 
-
-                <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                  <div class="resume-content mr-auto">
-      
-                    <h3 class="mb-0">Intrinsic User-Centric Interpretability (ICLR 2025)</h3>
-                    <div class="subheading mb-3">Vinitra Swamy, Syrielle Montariol, Julian Blackwell, Jibril Frej, Martin Jaggi, Tanja Käser</div>            
-                    <details><summary>Interpretable-by-design mixture-of-experts (MoE) models for human-centric interpretability </summary>
-                    <br>
-                    <p> InterpretCC (interpretable conditional computation) is a <b>family of interpretable-by-design neural networks that guarantee human-centric interpretability while maintaining comparable performance to state-of-the-art models</b> by adaptively and sparsely activating features before prediction. We extend this idea into an interpretable mixture-of-experts model that allows humans to specify topics of interest, discretely separates the feature space for each data point into topical subnetworks, and adaptively and sparsely activates these topical subnetworks. We demonstrate variations of the InterpretCC architecture for text and tabular data across several real-world benchmarks: six online education courses, news classification, breast cancer diagnosis, and review sentiment.
-                    </p>
-                    <p>[<a href="https://arxiv.org/pdf/2402.02933.pdf">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/interpretcc/">Code</a>]</p>
-                    </details>
-                    </div>
-                    <div class="resume-date text-md-right">
-                      <span class="text-primary">2025</span>
-                    </div> 
-                    </div>  
 
               <div class="resume-item d-flex flex-column flex-md-row mb-5">
                 <div class="resume-content mr-auto">
