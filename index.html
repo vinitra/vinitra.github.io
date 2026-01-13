@@ -191,10 +191,9 @@
           <h2 class="mb-5">Selected Research</h2>
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
-              <p>✨🎓 My PhD thesis on <a href="https://infoscience.epfl.ch/entities/publication/2dfd743f-90af-42c3-aa9b-efcc87686d29">"A Human-Centric Approach to Explainable AI for Personalized Education"</a> is now publicly available! 🎓 ✨</p> 
+              <p>✨🎓 My PhD thesis on <a href="https://infoscience.epfl.ch/entities/publication/2dfd743f-90af-42c3-aa9b-efcc87686d29">"A Human-Centric Approach to Explainable AI for Personalized Education"</a> is now publicly available!</p> 
               <p>For a full list of publications, please visit my <a href="https://scholar.google.com/citations?hl=en&user=SX9GAqwAAAAJ">Google Scholar</a> page. During my PhD, I was fortunate to be recognized by Stanford, UCSD and UChicago as a <em><a href="https://datascience.ucsd.edu/rising-stars-in-data-science/#1729030232449-20b9bc13-ee09">"Rising Star in Data Science"</a></em>, 
-                unanimously elected for the <a href="https://www.gresearch.com/news/g-research-2024-phd-prize-winners-epfl/">GResearch PhD Award</a>, awarded the <img class="mx-auto mb-1" src="img/epfl.png" alt="EPFL Logo" width="37"> IC Distinguished Service Award three times, 
-                and published over 15 papers</a> at top ML venues (NeurIPS, ICLR) and top educational AI venues (AIED, LAK). 
+                and awarded the <a href="https://www.gresearch.com/news/g-research-2024-phd-prize-winners-epfl/">GResearch PhD Award</a>, the <img class="mx-auto mb-1" src="img/epfl.png" alt="EPFL Logo" width="37"> IC Distinguished Service Award three times, and most recently the <a href="https://actu.epfl.ch/news/vinitra-swamy-awarded-2025-patrick-denantes-memo-3/">award for the department's best CS thesis</a>.
               </p>
             </div>
             <div class="resume-date text-md-right"></div>
@@ -205,12 +204,13 @@
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
 
-              <h3 class="mb-0">Intrinsic User-Centric Interpretability Through Global MoE (ICLR)</h3>
+              <h3 class="mb-0">User-Centric Interpretability Through Mixture-of-Experts (ICLR)</h3>
               <div class="subheading mb-3">Vinitra Swamy, Syrielle Montariol, Julian Blackwell, Jibril Frej, Martin Jaggi, Tanja Käser</div>            
-
+                <details><summary> An interpretable-by-design mixture-of-experts model architecture</summary> <br>
               <p> We present InterpretCC (interpretable conditional computation), a <b>family of intrinsically interpretable neural networks at a unique point in the design space that optimizes for ease of human understanding and explanation faithfulness, while maintaining comparable performance to state-of-the-art models</b>. InterpretCC achieves this through adaptive sparse activation of features before prediction, allowing the model to use a different, minimal set of features for each instance. We extend this idea into an interpretable, global mixture-of-experts (MoE) model that allows users to specify topics of interest, discretely separates the feature space for each data point into topical subnetworks, and adaptively and sparsely activates these topical subnetworks for prediction. We apply InterpretCC for text, time series and tabular data across several real-world datasets, demonstrating <b>comparable performance with non-interpretable baselines and outperforming intrinsically interpretable baselines</b>. Through a user study involving 56 teachers, InterpretCC explanations are found to have higher actionability and usefulness over other intrinsically interpretable approaches. </p>
-
-              <p>[<a href="https://iclr.cc/virtual/2025/poster/27864">Paper</a>] [<a href="https://openreview.net/forum?id=wDcunIOAOk">OpenReview</a>] [<a href="https://arxiv.org/pdf/2402.02933.pdf">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/interpretcc/">Code</a>]</p>
+              </details>
+              <p>[<a href="https://iclr.cc/virtual/2025/poster/27864">Paper</a>] [<a href="https://openreview.net/forum?id=wDcunIOAOk">OpenReview - ✨ Top 5% of scores! ✨</a>] [<a href="https://arxiv.org/pdf/2402.02933.pdf">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/interpretcc/">Code</a>]<br>
+              </p>
               </div>
               <div class="resume-date text-md-right">
                 <span class="text-primary">2025</span>
@@ -222,9 +222,9 @@
   
                 <h3 class="mb-0">iLLuMinaTE: From Explanations to Action (AAAI)</h3>
                 <div class="subheading mb-3">Vinitra Swamy*, Davide Romano*, Bhargav Srinivasa Desikan, Oana-Maria Camburu, Tanja Käser</div>            
-    
+                <details><summary> Using LLMs and social science theories of explanation to communicate XAI insights to students</summary>
                 <p> We introduce iLLuMinaTE, a <b>zero-shot, chain-of-prompts LLM-XAI pipeline</b> inspired by Miller's cognitive model of explanation that ensures explanations for state-of-the-art AI models are understandable for non-technical users such as educators and students. iLLuMinaTE is designed to deliver theory-driven, actionable feedback to students in online courses. iLLuMinaTE navigates three main stages - causal connection, explanation selection, and explanation presentation - with variations drawing from eight social science theories (e.g. Abnormal Conditions, Pearl's Model of Explanation, Necessity and Robustness Selection, Contrastive Explanation). We extensively evaluate 21,915 natural language explanations of iLLuMinaTE extracted from three LLMs (GPT-4o, Gemma2-9B, Llama3-70B), with three different underlying XAI methods (LIME, Counterfactuals, MC-LIME), across students from three diverse online courses. Our evaluation involves analyses of explanation alignment to the social science theory, understandability of the explanation, and a <b>real-world user preference study with 114 university students containing a novel actionability simulation</b>. We find that students prefer iLLuMinaTE explanations over traditional explainers 89.52% of the time. 
-                </p>
+                </p> </details>
                 <p>[<a href="https://ojs.aaai.org/index.php/AAAI/article/view/35065">Paper</a>]  [<a href="https://arxiv.org/pdf/2409.08027">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/iLLuMinaTE">Code</a>]  </p>
                 </div>
                 <div class="resume-date text-md-right">
@@ -232,41 +232,7 @@
                 </div> 
                   </div> 
 
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-
-              <h3 class="mb-0"><a href="https://actu.epfl.ch/news/anything-in-anything-out-a-new-modular-ai-model/">✨🗞️</a> MultiModN (NeurIPS)</h3>
-              <div class="subheading mb-3">Vinitra Swamy*, Malika Satayeva*, Jibril Frej, Thierry Bossy, Thijs Vogels, Martin Jaggi, Tanja Käser*, Mary-Anne Hartley*</div>            
-              
-              <p> We present MultiModN, a multimodal, modular network that fuses latent representations in a sequence of any number, combination, or type of modality while providing granular real-time predictive feedback on any number or combination of predictive tasks. <b>MultiModN's composable pipeline is interpretable-by-design, as well as innately multi-task and robust to the fundamental issue of biased missingness.</b> We perform four experiments on several benchmark MM datasets across 10 real-world tasks (predicting medical diagnoses, academic performance, and weather), and show that MultiModN's sequential MM fusion does not compromise performance compared with a baseline of parallel fusion. By simulating the challenging bias of missing not-at-random (MNAR), this work shows that, contrary to MultiModN, parallel fusion baselines erroneously learn MNAR and suffer catastrophic failure when faced with different patterns of MNAR at inference.</p>
-
-              [<a href="https://neurips.cc/virtual/2023/poster/70746">Paper</a>]  [<a href="https://actu.epfl.ch/news/anything-in-anything-out-a-new-modular-ai-model/">✨ News Coverage ✨</a>]  [<a href="https://arxiv.org/abs/2309.14118">Pre-Print</a>]  [<a href="https://github.com/epfl-iglobalhealth/multimodn">Code</a>]  [<a href="files/Poster_NeurIPS2023_MultiModN.pdf">Poster</a>]</p>
-
-
-              </div>
-              <div class="resume-date text-md-right">
-                <span class="text-primary">2023</span>
-              </div> 
-              </div>  
-
-                <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                  <div class="resume-content mr-auto">
-      
-                    <h3 class="mb-0"><a href="https://ai.meta.com/blog/llama-2-3-meditron-yale-medicine-epfl-open-source-llm/">✨🗞️</a> MEDITRON-70B: Scaling Medical Pretraining for LLMs (Nature Preprint)</h3>
-                    <div class="subheading mb-3">EPFL LLM Team, Yale Medicine, ICRC, Clinical Evaluation Group</div>            
-                    
-                    <p>We democratize large-scale medical AI systems by developing MEDITRON: a suite of open-source LLMs and LMMs with 7B and 70B parameters adapted to the medical domain. MEDITRON extends pretraining on a comprehensively curated medical corpus that includes biomedical literature and internationally recognized clinical practice guidelines. Evaluations using standard medical reasoning benchmarks show <b>significant improvements over all current open-access models and several state-of-the-art commercial LLMs</b> that are orders of magnitude larger, more expensive to host, and closed-source. Enhanced with visual processing capabilities, our MEDITRON-V model also outperforms all open-access models and much larger closed-source models on multimodal reasoning tasks for various biomedical imaging modalities. Beyond traditional benchmarks, we also create a novel and physician-driven adversarial question dataset grounded in real-world clinical settings, and a comprehensive 17-metric evaluation rubric to assess alignment and contextualization to real-world clinical practice. Applying this framework to MEDITRON-70B's responses, <b>sixteen independent physicians found a high level of alignment across all metrics, including medical accuracy, safety, fairness, communication, and interpretation</b>. The MEDITRON suite is a significant step forward in closing the technological gap between closed- and open-source medical foundation models.
-                    </p>
-                    [<a href="https://arxiv.org/abs/2311.16079">ArXiv Pre-Print</a>]  [<a href="https://ai.meta.com/blog/llama-2-3-meditron-yale-medicine-epfl-open-source-llm/">✨ News Coverage ✨</a>]  [<a href="https://www.researchsquare.com/article/rs-4139743/v1">Journal Pre-Print</a>]  [<a href="https://github.com/epfllm/meditron">Code</a>]  [<a href="https://huggingface.co/epfl-llm">Models + Datasets</a>] </p>
-      
-      
-                    </div>
-                    <div class="resume-date text-md-right">
-                      <span class="text-primary">2023</span>
-                    </div> 
-                    </div>  
-                    
-
+          
               <div class="resume-item d-flex flex-column flex-md-row mb-5">
                 <div class="resume-content mr-auto">
     
@@ -276,8 +242,9 @@
                   <br>
                   <p> Feedback plays a crucial role in learning by helping individuals understand and improve their performance. Yet, providing timely, personalized feedback in higher education presents a challenge due to the large and diverse student population, often resulting in delayed and generic feedback. Recent advances in generative Artificial Intelligence (AI) offer a solution for delivering timely and scalable feedback. However, little is known about students' perceptions of AI feedback. In this paper, <b>we investigate how the identity of the feedback provider affects students' perception</b>, focusing on the comparison between AI-generated and human-created feedback. Our approach involves students evaluating feedback in authentic educational settings both before and after disclosing the feedback provider’s identity, aiming to assess the influence of this knowledge on their perception. Our study with 457 students across diverse academic programs and levels reveals that students’ ability to differentiate between AI and human feedback depends on the task at hand. Disclosing the identity of the feedback provider affects students’ preferences, leading to a greater preference for human-created feedback and a decreased evaluation of AI-generated feedback. Moreover, students who failed to identify the feedback provider correctly tended to rate AI feedback higher, whereas those who succeeded preferred human feedback. These tendencies are similar across academic levels, genders, and fields of study. Our results highlight the complexity of integrating AI into educational feedback systems and underline the importance of considering student perceptions in AI-generated feedback adoption in higher education.
                   </p>
-                  <p>[<a href="https://osf.io/preprints/osf/6zm83">Pre-Print</a>]  [<a href="https://link.springer.com/chapter/10.1007/978-3-031-72315-5_20">Paper</a>]   [<a href="https://actu.epfl.ch/news/students-seem-to-prefer-teacher-feedback-over-ai-f/">News Coverage</a>] </p>
                   </details>
+                  <p>[<a href="https://osf.io/preprints/osf/6zm83">Pre-Print</a>]  [<a href="https://link.springer.com/chapter/10.1007/978-3-031-72315-5_20">Paper</a>]   [<a href="https://actu.epfl.ch/news/students-seem-to-prefer-teacher-feedback-over-ai-f/">News Coverage</a>] </p>
+
                   </div>
                   <div class="resume-date text-md-right">
                     <span class="text-primary">2024</span>
@@ -293,9 +260,8 @@
                 <br>
                 <p> Current approaches in human-centric XAI (e.g. predictive tasks in healthcare, education, or personalized ads) tend to rely on a single explainer. This is a concerning trend given systematic disagreement in explainability methods applied to the same points and underlying black-box models. We propose to shift from post-hoc explainability to designing interpretable neural network architectures; moving away from approximation techniques in human-centric and high impact applications. We <b>identify five needs of human-centric XAI (real-time, accurate, actionable, human-interpretable, and consistent) and propose two schemes for interpretable-by-design neural network workflows</b> (adaptive routing for interpretable conditional computation and diagnostic benchmarks for iterative model learning). We postulate that the future of human-centric XAI is neither in explaining black-boxes nor in reverting to traditional, interpretable models, but in neural networks that are intrinsically interpretable.
                 </p>
-                [<a href="https://arxiv.org/abs/2307.00364">Pre-Print</a>]</p>
-                </details>
-  
+              </details>
+                [<a href="https://arxiv.org/abs/2307.00364">Pre-Print</a>] [<a href="https://www.jair.org/index.php/jair/article/view/17970">Paper</a>] </p>
                 </div>
                 <div class="resume-date text-md-right">
                   <span class="text-primary">2024</span>
@@ -312,9 +278,8 @@
                 <br>
                 <p> Interpret3C (Interpretable Conditional Computation Clustering) is a <b>novel clustering pipeline that incorporates interpretable neural networks (NNs) in an unsupervised learning context</b>. This method leverages adaptive gating in NNs to select features for each student. Then, clustering is performed using the most relevant features per student, enhancing clusters’ relevance and interpretability. We use Interpret3C to analyze the behavioral clusters considering individual feature importances in a MOOC with over 5,000 students. This research contributes to the field by offering a scalable, robust clustering methodology and an educational case study that respects individual student differences and improves interpretability for high-dimensional data.
                 </p>
-                <p>[<a href="https://infoscience.epfl.ch/record/311547?ln=en&v=pdf">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/interpretable-clustering/">Code</a>]</p>
                 </details>
-  
+                <p>[<a href="https://infoscience.epfl.ch/record/311547?ln=en&v=pdf">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/interpretable-clustering/">Code</a>]</p>
                 </div>
                 <div class="resume-date text-md-right">
                   <span class="text-primary">2024</span>
@@ -330,8 +295,8 @@
                   <br>
                   <p> Intelligent Tutoring Systems (ITS) enhance personalized learning by predicting student responses to provide immediate and personalized instruction. However, recent research has primarily focused on the correctness of the answer rather than the student's performance on specific answer choices, limiting insights into students' thought processes and potential misconceptions. To address this gap, <b>we present MCQStudentBert, an answer forecasting model that leverages the capabilities of Large Language Models (LLMs) to integrate contextual understanding of students' answering history along with the text of the questions and answers</b>. By predicting the specific answer choices students are likely to make, practitioners can easily extend the model to new answer choices or remove answer choices for the same multiple-choice question (MCQ) without retraining the model. In particular, we compare MLP, LSTM, BERT, and Mistral 7B architectures to generate embeddings from students' past interactions, which are then incorporated into a finetuned BERT's response-forecasting mechanism. We apply our pipeline to a dataset of language learning MCQ, gathered from an ITS with over 10,000 students to explore the predictive accuracy of MCQStudentBert, which incorporates student interaction patterns, in comparison to correct answer prediction and traditional mastery-learning feature-based approaches. This work opens the door to more personalized content, modularization, and granular support.
                   </p>
-                  <p>[<a href="https://infoscience.epfl.ch/record/311547?ln=en&v=pdf">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/answer-forecasting">Code</a>]</p>
                   </details>
+                  <p>[<a href="https://infoscience.epfl.ch/record/311547?ln=en&v=pdf">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/answer-forecasting">Code</a>]</p>
     
                   </div>
                   <div class="resume-date text-md-right">
@@ -339,6 +304,41 @@
                   </div> 
                   </div>  
 
+
+                  <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+
+              <h3 class="mb-0"><a href="https://actu.epfl.ch/news/anything-in-anything-out-a-new-modular-ai-model/">✨🗞️</a> MultiModN (NeurIPS)</h3>
+              <div class="subheading mb-3">Vinitra Swamy*, Malika Satayeva*, Jibril Frej, Thierry Bossy, Thijs Vogels, Martin Jaggi, Tanja Käser*, Mary-Anne Hartley*</div>            
+              <details><summary> A modular, multimodal, interpretable neural network architecture that is robust to missing data</summary>
+              <p> We present MultiModN, a multimodal, modular network that fuses latent representations in a sequence of any number, combination, or type of modality while providing granular real-time predictive feedback on any number or combination of predictive tasks. <b>MultiModN's composable pipeline is interpretable-by-design, as well as innately multi-task and robust to the fundamental issue of biased missingness.</b> We perform four experiments on several benchmark MM datasets across 10 real-world tasks (predicting medical diagnoses, academic performance, and weather), and show that MultiModN's sequential MM fusion does not compromise performance compared with a baseline of parallel fusion. By simulating the challenging bias of missing not-at-random (MNAR), this work shows that, contrary to MultiModN, parallel fusion baselines erroneously learn MNAR and suffer catastrophic failure when faced with different patterns of MNAR at inference.</p>
+              </details>
+              [<a href="https://neurips.cc/virtual/2023/poster/70746">Paper</a>]  [<a href="https://actu.epfl.ch/news/anything-in-anything-out-a-new-modular-ai-model/">✨ News Coverage ✨</a>]  [<a href="https://arxiv.org/abs/2309.14118">Pre-Print</a>]  [<a href="https://github.com/epfl-iglobalhealth/multimodn">Code</a>]  [<a href="files/Poster_NeurIPS2023_MultiModN.pdf">Poster</a>]</p>
+
+
+              </div>
+              <div class="resume-date text-md-right">
+                <span class="text-primary">2023</span>
+              </div> 
+              </div>  
+
+                <div class="resume-item d-flex flex-column flex-md-row mb-5">
+                  <div class="resume-content mr-auto">
+      
+                    <h3 class="mb-0"><a href="https://ai.meta.com/blog/llama-2-3-meditron-yale-medicine-epfl-open-source-llm/">✨🗞️</a> MEDITRON-70B: Scaling Medical Pretraining for LLMs (Nature Preprint)</h3>
+                    <div class="subheading mb-3">EPFL LLM Team, Yale Medicine, ICRC, Clinical Evaluation Group</div>            
+                    <details><summary> Developing open medical foundation models (MEDITRON)</summary>
+                    <p>We democratize large-scale medical AI systems by developing MEDITRON: a suite of open-source LLMs and LMMs with 7B and 70B parameters adapted to the medical domain. MEDITRON extends pretraining on a comprehensively curated medical corpus that includes biomedical literature and internationally recognized clinical practice guidelines. Evaluations using standard medical reasoning benchmarks show <b>significant improvements over all current open-access models and several state-of-the-art commercial LLMs</b> that are orders of magnitude larger, more expensive to host, and closed-source. Enhanced with visual processing capabilities, our MEDITRON-V model also outperforms all open-access models and much larger closed-source models on multimodal reasoning tasks for various biomedical imaging modalities. Beyond traditional benchmarks, we also create a novel and physician-driven adversarial question dataset grounded in real-world clinical settings, and a comprehensive 17-metric evaluation rubric to assess alignment and contextualization to real-world clinical practice. Applying this framework to MEDITRON-70B's responses, <b>sixteen independent physicians found a high level of alignment across all metrics, including medical accuracy, safety, fairness, communication, and interpretation</b>. The MEDITRON suite is a significant step forward in closing the technological gap between closed- and open-source medical foundation models.
+                    </p>
+                    </details>
+
+                    [<a href="https://arxiv.org/abs/2311.16079">ArXiv Pre-Print</a>]  [<a href="https://ai.meta.com/blog/llama-2-3-meditron-yale-medicine-epfl-open-source-llm/">✨ News Coverage ✨</a>]  [<a href="https://www.researchsquare.com/article/rs-4139743/v1">Journal Pre-Print</a>]  [<a href="https://github.com/epfllm/meditron">Code</a>]  [<a href="https://huggingface.co/epfl-llm">Models + Datasets</a>] </p>
+                    </div>
+                    <div class="resume-date text-md-right">
+                      <span class="text-primary">2023</span>
+                    </div> 
+                    </div>  
+                    
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
@@ -348,9 +348,8 @@
               <details><summary>A study on LLM bias transfer in AI writing support for students</summary>
               <br>
               <p> We investigate how bias transfers through an AI writing support pipeline through a large scale user study with 231 students writing business case peer reviews in German. Students are divided into five groups with different levels of writing support (traditional ML suggestions, control group with no assistance, finetuned versions of GPT2, GPT 3, and GPT3.5). Using GenBit, WEAT, and SEAT, we evaluate the gender bias at various stages of the pipeline: in model embeddings, in suggestions generated by the models, and in reviews written by students. Our results demonstrate that there is no significant difference in gender bias between the resulting peer reviews of groups with and without LLM suggestions. Our research is therefore <b>optimistic about the use of AI writing support in the classroom</b>, showcasing a context where <b>bias in LLMs does not transfer to students' responses</b>.</p>
-              [<a href="https://aclanthology.org/2023.findings-emnlp.689/">Paper</a>] [<a href="https://arxiv.org/abs/2311.03311">Pre-Print</a>] [<a href="https://github.com/epfl-ml4ed/unraveling-llm-bias">Code</a>]</p>
               </details>
-
+              [<a href="https://aclanthology.org/2023.findings-emnlp.689/">Paper</a>] [<a href="https://arxiv.org/abs/2311.03311">Pre-Print</a>] [<a href="https://github.com/epfl-ml4ed/unraveling-llm-bias">Code</a>]</p>
               </div>
               <div class="resume-date text-md-right">
                 <span class="text-primary">2023</span>
@@ -364,8 +363,8 @@
               <details><summary>Validating eXplainable AI with university professors for AI-assisted course design</summary>
               <br>
               <p> We use human experts to validate explainable AI approaches in the context of student success prediction. Our pairwise analyses cover five course pairs (nine datasets from Coursera, EdX, and Courseware) that differ in one educationally relevant aspect and popular instance-based explainers. We quantitatively compare the distances between the explanations across courses and methods, then validate the explanations of LIME, SHAP, and a counterfactual-based confounder with 26 semi-structured interviews of university-level educators regarding which features they believe contribute most to student success, which explanations they trust most, and how they could transform these insights into actionable course design decisions. <b>Our results show that quantitatively, explainers significantly disagree with each other about what is important, and qualitatively, experts themselves do not agree on which explanations are most trustworthy.</b></p>
-              [<a href="https://dl.acm.org/doi/10.1145/3576050.3576147">Paper</a>] [<a href="https://arxiv.org/abs/2212.08955">Pre-Print</a>] [<a href="https://github.com/epfl-ml4ed/trusting-explainers">Code</a>]</p>
               </details>
+              [<a href="https://dl.acm.org/doi/10.1145/3576050.3576147">Paper</a>] [<a href="https://arxiv.org/abs/2212.08955">Pre-Print</a>] [<a href="https://github.com/epfl-ml4ed/trusting-explainers">Code</a>]</p>
             </div>
             <div class="resume-date text-md-right">
               <span class="text-primary">2023</span>
@@ -383,8 +382,8 @@
               <br>
               <p> We present RIPPLE, utilizing irregular multivariate time series modeling with graph neural networks to achieve comparable or better accuracy with raw time series clickstreams in comparison to hand-crafted features. Furthermore, we extend concept activation vectors for interpretability in raw time series models. Our experimental analysis on 23 MOOCs with millions of combined interactions over six behavioral dimensions show that <b>models designed with our approach can (i) beat state-of-the-art time series baselines with no feature extraction and (ii) provide interpretable insights for personalized interventions</b>.
               </p>
-               [<a href="https://ojs.aaai.org/index.php/AAAI/article/view/26888">Paper</a>] [<a href="https://arxiv.org/abs/2212.01133">Pre-Print</a>] [<a href="files/PDF_AAAI2023_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/ripple/">Code</a>]</p>
               </details>
+               [<a href="https://ojs.aaai.org/index.php/AAAI/article/view/26888">Paper</a>] [<a href="https://arxiv.org/abs/2212.01133">Pre-Print</a>] [<a href="files/PDF_AAAI2023_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/ripple/">Code</a>]</p>
             </div>
 
             <div class="resume-date text-md-right">
@@ -402,9 +401,8 @@
               <br>
               <p>We analyze bias across text and through multiple architectures on a corpus of 9,165 German peer-reviews collected from university students over five years. Notably, our corpus includes labels such as helpfulness, quality, and critical aspect ratings from the peer-review recipient as well as demographic attributes. We conduct a Word Embedding Association Test (WEAT) analysis on (1) our collected corpus in connection with the clustered labels, (2) the most common pre-trained German language models (T5, BERT, and GPT-2) and GloVe embeddings, and (3) the language models after fine-tuning on our collected data-set. In contrast to our initial expectations, we found that our collected corpus does not reveal many biases in the co-occurrence analysis or in the GloVe embeddings. However, <b>the pre-trained German language models find substantial conceptual, racial, and gender bias and have significant changes in bias across conceptual and racial axes during fine-tuning</b> on the peer-review data. With our research, we aim to contribute to the fourth UN sustainability goal (quality education) with a novel dataset, an understanding of biases in natural language education data, and the potential harms of not counteracting biases in language models for educational tasks.
               </p>
-              [<a href="https://aclanthology.org/2022.coling-1.115/">Paper</a>]  [<a href="https://arxiv.org/abs/2209.10335">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/bias-at-a-second-glance">Code + Data</a>]</p>
               </details>
-
+              [<a href="https://aclanthology.org/2022.coling-1.115/">Paper</a>]  [<a href="https://arxiv.org/abs/2209.10335">Pre-Print</a>]  [<a href="https://github.com/epfl-ml4ed/bias-at-a-second-glance">Code + Data</a>]</p>
               </div>
               <div class="resume-date text-md-right">
                 <span class="text-primary">2022</span>
@@ -419,8 +417,8 @@
               <details><summary>Evaluation of systematic disagreement in post-hoc explainers for education</summary>
               <br>
               <p> We compare five explainers for black-box neural nets (LIME, PermutationSHAP, KernelSHAP, DiCE, CEM) on the downstream task of student performance prediction for five massive open online courses. Our experiments demonstrate that the families of explainers <b>do not agree</b> with each other on feature importance for the same Bidirectional LSTM models with the same representative set of students. We use Principal Component Analysis, Jensen-Shannon distance, and Spearman's rank-order correlation to quantitatively cross-examine explanations across methods and courses. <b>Our results come to the concerning conclusion that the choice of explainer contains systematic bias and is in fact paramount to the interpretation of the predictive results, even more so than the data the model is trained on.</b></p>
-              [<a href="https://educationaldatamining.org/edm2022/proceedings/2022.EDM-long-papers.9/2022.EDM-long-papers.9.pdf">Paper</a>]  [<a href="https://actu.epfl.ch/news/digitall-innovation-at-epfl-for-explainable-and--6/>">✨ News Coverage ✨</a>]  [<a href="https://arxiv.org/abs/2207.00551">Pre-Print</a>] [<a href="files/PDF_EDM2022_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/evaluating-explainers">Code</a>]</p>
               </details>
+              [<a href="https://educationaldatamining.org/edm2022/proceedings/2022.EDM-long-papers.9/2022.EDM-long-papers.9.pdf">Paper</a>]  [<a href="https://actu.epfl.ch/news/digitall-innovation-at-epfl-for-explainable-and--6/>">✨ News Coverage ✨</a>]  [<a href="https://arxiv.org/abs/2207.00551">Pre-Print</a>] [<a href="files/PDF_EDM2022_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/evaluating-explainers">Code</a>]</p>
               </div>
               <div class="resume-date text-md-right">
                 <span class="text-primary">2022</span>
@@ -434,8 +432,9 @@
               <details><summary>Generalizable models for early success prediction in MOOCs</summary>
               <br>
               <p> We tackle the problem of transferability across MOOCs from different domains and topics, focusing on models for early success prediction. In this paper, we present and analyze three novel strategies to creating generalizable models: 1) pre-training a model on a large set of diverse courses, 2) leveraging the pre-trained model by including meta features about courses to orient downstream tasks, and 3) fine-tuning the meta transfer learning model on previous course iterations. Our experiments on 26 MOOCs with over 145,000 combined enrollments and millions of interactions show that <b>models combining interaction clickstreams and meta information have comparable or better performance than models which have access to previous iterations of the course</b>. With these models, we enable educators to <b>warm-start their predictions</b> for new and ongoing courses.</p>
-              [<a href="https://dl.acm.org/doi/10.1145/3491140.3528273">Paper</a>] [<a href="https://arxiv.org/abs/2205.01064">Pre-Print</a>] [<a href="files/PDF_L@S2022_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/meta-transfer-learning">Code</a>] </p>
               </details>
+              [<a href="https://dl.acm.org/doi/10.1145/3491140.3528273">Paper</a>] [<a href="https://arxiv.org/abs/2205.01064">Pre-Print</a>] [<a href="files/PDF_L@S2022_Vinitra.pdf">Slides</a>] [<a href="https://github.com/epfl-ml4ed/meta-transfer-learning">Code</a>] </p>
+              
             </div>
 
             <div class="resume-date text-md-right">
@@ -453,8 +452,9 @@
               <br>
               <p> While transformer-based language models are undeniably useful, it is a challenge to quantify their performance beyond traditional accuracy metrics. In this paper, we compare BERT-based language models (DistilBERT, BERT, RoBERTa) through snapshots of acquired knowledge at sequential stages of the training process. We contribute a quantitative framework to compare language models through knowledge graph extraction and showcase a part-of-speech analysis to identify the linguistic strengths of each model variant. Using these metrics, machine learning practitioners can <b>compare models, diagnose their models' behavioral strengths and weaknesses, and identify new targeted datasets to improve model performance</b>.</p>
               <p> Published at eXplainable AI for Debugging and Diagnosis Workshop at <a href="https://xai4debugging.github.io/">NeurIPS 2021</a>. </p>
-              [<a href="https://xai4debugging.github.io/files/papers/interpreting_language_models_t.pdf">Paper</a>] [<a href="files/Poster_NeurIPS2021_InterpretingLanguageModels.pdf">Poster</a>] [<a href="https://github.com/epfml/interpret-lm-knowledge">Code</a>]</p>
               </details>
+              [<a href="https://xai4debugging.github.io/files/papers/interpreting_language_models_t.pdf">Paper</a>] [<a href="files/Poster_NeurIPS2021_InterpretingLanguageModels.pdf">Poster</a>] [<a href="https://github.com/epfml/interpret-lm-knowledge">Code</a>]</p>
+              
             </div>
 
             <div class="resume-date text-md-right">
@@ -471,8 +471,9 @@
               <br>
               <p> Open Neural Network Exchange (<a href="http://onnx.ai">ONNX</a>) is an open source ecosystem for machine learning interoperability, empowering AI developers to choose the right tools as their project evolves. Founded by Microsoft and Facebook, and now supported by over 30 other companies, ONNX defines a common set of operators - the building blocks of machine learning and deep learning models - and a common file format to enable AI developers to use models with a variety of frameworks, tools, runtimes, and compilers. 
               In addition to the code and model contributions, we presented several research talks about model operationalization and acceleration with ONNX and ONNX Runtime at Microsoft MLADS (ML, AI, Data Science Conference) and UW eScience Institute. </p>
-              <p>[<a href="https://github.com/onnx/models">ONNX Model Zoo</a>]  [<a href="https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/deployment/onnx">ONNX + Azure ML Tutorials</a>]  [<a href="https://notebooks.azure.com/qining/projects/285-lab-session-in-mlads-2019">MLADS Notebooks</a>]  [<a href="https://www.dropbox.com/s/d7zqosvjvytu8yx/285%20Lab%2C%20Ning.pdf?dl=0">MLADS Slides</a>]  [<a href="https://www.dropbox.com/s/3sx7jhmcx6p1xq5/ONNX_UW_lightning%20talk.pptx?dl=0">UW Slides</a>]</p>
               </details>
+              <p>[<a href="https://github.com/onnx/models">ONNX Model Zoo</a>]  [<a href="https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/deployment/onnx">ONNX + Azure ML Tutorials</a>]  [<a href="https://notebooks.azure.com/qining/projects/285-lab-session-in-mlads-2019">MLADS Notebooks</a>]  [<a href="https://www.dropbox.com/s/d7zqosvjvytu8yx/285%20Lab%2C%20Ning.pdf?dl=0">MLADS Slides</a>]  [<a href="https://www.dropbox.com/s/3sx7jhmcx6p1xq5/ONNX_UW_lightning%20talk.pptx?dl=0">UW Slides</a>]</p>
+              
             </div>
 
             <div class="resume-date text-md-right">
@@ -487,8 +488,9 @@
               <details><summary>A case study in NLP for humanitarian data interoperability</summary>
               <br>
               <p> We present a simple yet effective machine learning model to predict tags for datasets from the United Nations Office for the Coordination of Humanitarian Affairs (<a href="https://www.unocha.org/">UN OCHA</a>) with the labels and attributes of the Humanitarian Exchange Language (<a href="http://hxlstandard.org/">HXL</a>) Standard for data interoperability. This paper details the methodology used to predict the corresponding tags and attributes for a given dataset with an accuracy of 94% for HXL header tags and an accuracy of 92% for descriptive attributes. Compared to previous work, our workflow provides a 14% accuracy increase and is a novel case study of using ML to enhance humanitarian data. </p>
-              <p>[<a href="https://www.kdd.org/kdd2019/docs/Humanitarian_Data_tagging_KDD2019_SocialImpactTrack_HXLTagPrediction.pdf">Paper</a>] [<a href="https://www.dropbox.com/s/17vlx8gw01zil3u/Vinitra-KDD-HumDataPresentation.pptx?dl=0">Slides</a>]  [<a href="https://www.dropbox.com/s/1263fkgoe6x6vee/poster-hxl.pdf?dl=0">Poster</a>] [<a href="https://github.com/humanitarian-data-collaboration">Code</a>]</p>
               </details>
+              <p>[<a href="https://www.kdd.org/kdd2019/docs/Humanitarian_Data_tagging_KDD2019_SocialImpactTrack_HXLTagPrediction.pdf">Paper</a>] [<a href="https://cdss.berkeley.edu/news/using-machine-learning-advance-humanitarian-efforts">✨ News Coverage ✨</a>]  [<a href="https://www.dropbox.com/s/17vlx8gw01zil3u/Vinitra-KDD-HumDataPresentation.pptx?dl=0">Slides</a>]  [<a href="https://www.dropbox.com/s/1263fkgoe6x6vee/poster-hxl.pdf?dl=0">Poster</a>] [<a href="https://github.com/humanitarian-data-collaboration">Code</a>]</p>
+              
             </div>
             <div class="resume-date text-md-right">
               <span class="text-primary">2019</span>
@@ -502,8 +504,8 @@
               <details><summary>Tools for scaling data science course offerings from 100 to 1500 students a semester </summary>
               <br>
               <p> A detailed research report on autograding, analytics, and scaling JupyterHub infrastructure highlighted in use for thousands of students taking <a href="http://data8.org">Data 8</a> at UC Berkeley. Thesis presented as a graduate student affiliated with <a href="https://rise.cs.berkeley.edu/blog/author/vinitra/">RISELab</a>, after helping develop UC Berkeley data science's software infrastructure stack including JupyterHub, autograding with OkPy, Gradescope, and authentication for 1000s of students. Collaborated with Yuvi Panda, Ryan Lovett, Chris Holdgraf, and Gunjan Baid on a talk detailing the infrastructure stack at JupyterCon 2017. </p>
-              <p>[<a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2018/EECS-2018-81.html">Thesis</a>] [<a href="https://blog.jupyter.org/introducing-the-helm-chart-for-jupyterhub-deployment-with-kubernetes-b79bfd18566d">Blog</a>] [<a href="https://github.com/data-8">Code</a>] [<a href="https://cdn.oreillystatic.com/en/assets/1/event/271/Data%20science%20at%20UC%20Berkeley_%202%2C000%20undergraduates%2C%2050%20majors%2C%20no%20command%20line%20Presentation.pdf">JupyterCon Slides</a>] [<a href="https://conferences.oreilly.com/jupyter/jup-ny-2017/public/schedule/speaker/279664">JupyterCon Speaker Profile</a>]</p>
               </details>
+              <p>[<a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2018/EECS-2018-81.html">Thesis</a>] [<a href="https://blog.jupyter.org/introducing-the-helm-chart-for-jupyterhub-deployment-with-kubernetes-b79bfd18566d">Blog</a>] [<a href="https://github.com/data-8">Code</a>] [<a href="https://cdn.oreillystatic.com/en/assets/1/event/271/Data%20science%20at%20UC%20Berkeley_%202%2C000%20undergraduates%2C%2050%20majors%2C%20no%20command%20line%20Presentation.pdf">JupyterCon Slides</a>] [<a href="https://conferences.oreilly.com/jupyter/jup-ny-2017/public/schedule/speaker/279664">JupyterCon Speaker Profile</a>]</p>
             </div>
             <div class="resume-date text-md-right">
               <span class="text-primary">2018</span>
@@ -517,8 +519,8 @@
               <details><summary>Modeling student learning through iterative code attempts in Jupyter notebooks</summary>
               <br>
               <p>Knowledge Tracing is a body of learning science literature that seeks to model student knowledge acquisition through their interaction with coursework. This paper uses a recurrent neural network (LSTM) and free-form code attempts to model student knowledge in large scale computer science classes. This work has applications in hint generation for code assignments, student modeling, and plagiarism detection in interactive programming environments.</p>
-              <p>[<a href="https://link.springer.com/chapter/10.1007%2F978-3-319-93846-2_65">Paper</a>] [<a href="https://www.dropbox.com/s/pel677yohdqobwy/AIED_DKTCodeProgression_Poster%20%288%29.pdf?dl=0">Poster</a>]</p>
               </details>
+              <p>[<a href="https://link.springer.com/chapter/10.1007%2F978-3-319-93846-2_65">Paper</a>] [<a href="https://www.dropbox.com/s/pel677yohdqobwy/AIED_DKTCodeProgression_Poster%20%288%29.pdf?dl=0">Poster</a>]</p>
             </div>
             <div class="resume-date text-md-right">
               <span class="text-primary">2018</span>
@@ -604,6 +606,17 @@
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
         <div class="my-auto">
         <h2 class="mb-5">Industry</h2>
+
+            <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0"><img class="mx-auto mb-1" src="img/schole.png" alt="" width="30"> Scholé AI</h3>
+              <div class="subheading mb-3">Co-founder and CEO</div>
+              <p>Working on personalized learning at scale. Check out our <a href="https://schole.ai">company website</a>!</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary">2025 - Current</span>
+            </div>
+          </div>
 
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
@@ -697,7 +710,7 @@
 
              </div>
             <div class="resume-date text-md-right">
-              <span class="text-primary">2020 - Current</span>
+              <span class="text-primary">2020 - 2025</span>
             </div>
           </div>
 
@@ -753,6 +766,23 @@
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="speaking">
         <div class="my-auto">
           <h2 class="mb-5">Teaching Experience </h2>
+
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Agentic AI Intensives</h3>
+              <div class="subheading mb-3">Harvard University</div>
+              <ul class="fa-ul mb-0">
+              <li>
+                <i class="fa-li fa fa-book text-warning"></i>
+                <b>Adjunct Teaching Faculty</b> to 100s of professionals around the world through HDSI's AI-enabled online classroom. <a href="https://www.forbes.com/sites/rachelwells/2025/11/19/3-courses-to-master-ai-agents--make-more-money-in-2026/">Forbes</a> recently recommended the course as the top way to learn agents in 2026!
+              </ul>
+              <br>
+              <p>[<a href="https://datascience.harvard.edu/2025/08/18/harvard-data-science-initiative-announces-ai%e2%80%91enhanced-one%e2%80%91week-online-course-generative-ai-wisdom-and-warnings-from-harvard-data-science-review/">Course Announcement</a>] </p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary">2025 - Current</span>
+            </div>
+          </div>
 
           <div class="resume-item d-flex flex-column flex-md-row mb-5">
             <div class="resume-content mr-auto">
@@ -870,6 +900,9 @@
         <div class="my-auto">
           <h2 class="mb-5">Awards</h2>
             <ul class="fa-ul mb-0">
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              <a href="https://actu.epfl.ch/news/vinitra-swamy-awarded-2025-patrick-denantes-memo-3/">Patrick Denantes Memorial Award</a> for the EPFL's best CS thesis </li>
             <li>
                 <i class="fa-li fa fa-trophy text-warning"></i>
                 <a href="https://datascience.ucsd.edu/rising-stars-in-data-science/#1729030232449-20b9bc13-ee09">Rising Stars in Data Science 2024</a></li>
