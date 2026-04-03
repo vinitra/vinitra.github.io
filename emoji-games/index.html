@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Myla's Emoji Games</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(135deg, #ffe0f0, #fff0f5, #fce4ec);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overflow: hidden;
+      height: 100dvh;
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .screen { display: none; height: 100dvh; position: relative; }
+    .screen.active { display: flex; flex-direction: column; align-items: center; }
+
+    @keyframes sparkle-float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    .sparkles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .sparkle { position: absolute; animation: sparkle-float 3s ease-in infinite; opacity: 0; }
+
+    /* Home screen */
+    .home-emojis { font-size: 48px; margin-bottom: 8px; letter-spacing: 12px; }
+    .rainbow-title {
+      font-size: 28px; font-weight: 800;
+      background: linear-gradient(90deg, #ff6b9d, #ffa751, #ffe259, #7ed56f, #55c1ff, #c084fc);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 32px;
+    }
+    .home-buttons { display: flex; flex-direction: column; gap: 16px; }
+    .game-btn {
+      display: flex; align-items: center; gap: 14px; background: white; border: none;
+      border-radius: 20px; padding: 18px 24px; font-size: 18px; font-weight: 600; color: #333;
+      box-shadow: 0 4px 16px rgba(233, 30, 99, 0.15); cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s; -webkit-tap-highlight-color: transparent;
+    }
+    .game-btn:active { transform: scale(0.97); box-shadow: 0 2px 8px rgba(233, 30, 99, 0.2); }
+    .btn-emoji { font-size: 36px; }
+    .btn-text { text-align: left; }
+    .settings-btn {
+      position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.5);
+      border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 18px;
+      cursor: pointer; z-index: 2; -webkit-tap-highlight-color: transparent;
+    }
+    .back-btn {
+      position: absolute; top: 16px; left: 16px; background: rgba(255,255,255,0.5);
+      border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 18px;
+      cursor: pointer; z-index: 2; -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkles" id="sparkles"></div>
+
+  <div id="home-screen" class="screen active">
+    <div style="padding: 40px 20px; text-align: center; z-index: 1; width: 100%; max-width: 400px;">
+      <div class="home-emojis">🦄 🌈 ⭐</div>
+      <h1 class="rainbow-title">Myla's Emoji Games</h1>
+      <div class="home-buttons">
+        <button class="game-btn" onclick="showScreen('match-screen'); startMatchGame()">
+          <span class="btn-emoji">🔗</span>
+          <span class="btn-text">Match the Emojis!</span>
+        </button>
+        <button class="game-btn" onclick="showScreen('sort-screen'); startSortGame()">
+          <span class="btn-emoji">📦</span>
+          <span class="btn-text">Sort the Emojis!</span>
+        </button>
+      </div>
+    </div>
+    <button class="settings-btn" onclick="openSettings()">⚙️</button>
+  </div>
+
+  <div id="match-screen" class="screen">
+    <button class="back-btn" onclick="goHome()">←</button>
+  </div>
+
+  <div id="sort-screen" class="screen">
+    <button class="back-btn" onclick="goHome()">←</button>
+  </div>
+
+  <div id="settings-overlay" class="overlay"></div>
+  <div id="celebration-overlay" class="overlay"></div>
+
+  <script>
+    // === Task 3: Emoji data and utilities ===
+
+    const PAIRS = [
+      ['🐶','🦴'], ['☀️','🌻'], ['🌧️','☂️'], ['🐰','🥕'],
+      ['👶','🍼'], ['🎵','🎸'], ['🐟','🌊'], ['🌙','⭐'],
+      ['🐻','🍯'], ['🎨','🖌️'], ['🏠','🔑'], ['🌺','🦋'],
+      ['🍕','🧀'], ['✈️','☁️'], ['🐱','🧶'], ['🚀','🪐'],
+      ['🐸','🪷'], ['🦁','👑'], ['❄️','⛄'], ['🌈','🔆'],
+      ['🐵','🍌'], ['🐦','🪺'], ['🍪','🥛'], ['🏀','🏆'],
+    ];
+
+    const CATEGORIES = {
+      Animals:  { icon: '🐾', emojis: ['🐶','🐱','🐰','🐻','🦁','🐸','🐵','🦋','🐟','🐦','🐢','🐷','🐮','🦊'] },
+      Fruits:   { icon: '🍎', emojis: ['🍎','🍌','🍓','🍊','🍇','🍉','🍑','🍒','🫐','🥝'] },
+      Food:     { icon: '🍕', emojis: ['🍕','🍔','🧁','🍩','🍪','🌮','🍦','🍿','🥪','🧀'] },
+      Vehicles: { icon: '🚗', emojis: ['🚗','🚌','🚒','✈️','🚀','🚂','🚁','⛵','🛵','🚲'] },
+      Weather:  { icon: '☀️', emojis: ['☀️','🌧️','⛈️','🌈','❄️','🌙','⭐','☁️','🌪️'] },
+      Sports:   { icon: '⚽', emojis: ['⚽','🏀','🎾','⛷️','🏊','🚴','🏆','🥇'] },
+      Hearts:   { icon: '❤️', emojis: ['❤️','🧡','💛','💚','💙','💜','🩷','🖤','🤍'] },
+      Nature:   { icon: '🌸', emojis: ['🌸','🌻','🌺','🌴','🌵','🍀','🌊','🪻','🌹'] },
+      Music:    { icon: '🎵', emojis: ['🎵','🎸','🥁','🎹','🎺','🎷','🪘'] },
+    };
+
+    const DIFFICULTY = {
+      easy:   { matchPairs: 4, sortEmojis: 6, sortCategories: 2 },
+      medium: { matchPairs: 6, sortEmojis: 9, sortCategories: 3 },
+      hard:   { matchPairs: 8, sortEmojis: 12, sortCategories: 4 },
+    };
+
+    let currentDifficulty = localStorage.getItem('emoji-difficulty') || 'easy';
+    function getDifficulty() { return DIFFICULTY[currentDifficulty]; }
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function pickRandom(arr, n) { return shuffle(arr).slice(0, n); }
+
+    function selectMatchPairs(count) {
+      const shuffled = shuffle(PAIRS);
+      const selected = [];
+      const usedEmojis = new Set();
+      for (const pair of shuffled) {
+        if (selected.length >= count) break;
+        if (!usedEmojis.has(pair[0]) && !usedEmojis.has(pair[1])) {
+          selected.push(pair);
+          usedEmojis.add(pair[0]);
+          usedEmojis.add(pair[1]);
+        }
+      }
+      return selected;
+    }
+
+    function selectSortCategories(numCategories, emojisPerCategory) {
+      const names = shuffle(Object.keys(CATEGORIES));
+      const chosen = names.slice(0, numCategories);
+      const perCat = Math.floor(emojisPerCategory / numCategories);
+      return chosen.map(name => ({
+        name, icon: CATEGORIES[name].icon,
+        emojis: pickRandom(CATEGORIES[name].emojis, perCat),
+      }));
+    }
+
+    let currentGame = null;
+
+    function celebrate() { alert('You did it!'); goHome(); }
+
+    // === Task 2: Navigation ===
+
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function goHome() { showScreen('home-screen'); }
+
+    // Placeholder game functions
+    function startMatchGame() {}
+    function startSortGame() {}
+    function openSettings() {}
+
+    // === Task 1: Sparkle spawner ===
+
+    function spawnSparkles() {
+      const container = document.getElementById('sparkles');
+      const symbols = ['✨', '⭐', '💖', '🌟'];
+      setInterval(() => {
+        const el = document.createElement('span');
+        el.className = 'sparkle';
+        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.bottom = '-20px';
+        el.style.animationDuration = (2 + Math.random() * 3) + 's';
+        el.style.fontSize = (10 + Math.random() * 14) + 'px';
+        container.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      }, 400);
+    }
+    spawnSparkles();
+  </script>
+</body>
+</html>
