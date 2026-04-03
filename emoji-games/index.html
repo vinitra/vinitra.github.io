@@ -89,6 +89,50 @@
     @keyframes sparkle-pop {
       0% { transform: scale(1); } 50% { transform: scale(1.25); } 100% { transform: scale(1); opacity: 0.6; }
     }
+
+    /* Sort game styles */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); } 40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); } 80% { transform: translateX(4px); }
+    }
+    .sort-pool {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      padding: 12px 16px; z-index: 1; min-height: 100px;
+    }
+    .sort-emoji {
+      width: 64px; height: 64px; background: white; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; font-size: 32px;
+      box-shadow: 0 3px 12px rgba(233,30,99,0.12); cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, opacity 0.3s;
+      -webkit-tap-highlight-color: transparent; touch-action: none;
+    }
+    .sort-emoji.selected {
+      transform: scale(1.1); box-shadow: 0 0 0 3px #ff6b9d, 0 4px 16px rgba(233,30,99,0.3);
+    }
+    .sort-emoji.dragging {
+      position: fixed; z-index: 100; transform: scale(1.15);
+      box-shadow: 0 8px 24px rgba(233,30,99,0.3); pointer-events: none;
+    }
+    .sort-emoji.sorted { animation: sparkle-pop 0.4s ease forwards; }
+    .sort-emoji.wrong-sort { animation: shake 0.4s ease; }
+    .sort-buckets {
+      display: flex; gap: 12px; padding: 12px 16px; justify-content: center;
+      flex-wrap: wrap; flex: 1; align-content: flex-start; z-index: 1;
+    }
+    .sort-bucket {
+      background: rgba(255,255,255,0.85); border-radius: 20px; padding: 14px;
+      min-width: 140px; min-height: 120px; flex: 1; max-width: 200px;
+      text-align: center; box-shadow: 0 3px 12px rgba(233,30,99,0.1);
+      transition: box-shadow 0.15s, transform 0.15s; -webkit-tap-highlight-color: transparent;
+    }
+    .sort-bucket.highlight {
+      box-shadow: 0 0 0 3px #ff6b9d, 0 4px 16px rgba(233,30,99,0.25); transform: scale(1.03);
+    }
+    .bucket-label { font-size: 14px; font-weight: 700; color: #e91e63; margin-bottom: 8px; }
+    .bucket-icon { font-size: 24px; }
+    .bucket-contents { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; min-height: 40px; }
+    .bucket-contents .sorted-emoji { font-size: 28px; }
   </style>
 </head>
 <body>
@@ -123,7 +167,10 @@
   </div>
 
   <div id="sort-screen" class="screen">
-    <button class="back-btn" onclick="goHome()">←</button>
+    <button class="back-btn" onclick="goHome()">&#8592;</button>
+    <h2 class="game-title rainbow-title" style="margin-top: 20px; font-size: 22px;">Sort the Emojis!</h2>
+    <div id="sort-pool" class="sort-pool"></div>
+    <div id="sort-buckets" class="sort-buckets"></div>
   </div>
 
   <div id="settings-overlay" class="overlay"></div>
@@ -355,8 +402,143 @@
       });
     }
 
+    // === Task 5: Sort game ===
+
+    let sortState = { categories: [], selectedEmoji: null, sorted: 0, total: 0 };
+
+    function startSortGame() {
+      currentGame = 'sort';
+      const diff = getDifficulty();
+      const categories = selectSortCategories(diff.sortCategories, diff.sortEmojis);
+      const allEmojis = shuffle(categories.flatMap(c => c.emojis.map(e => ({ emoji: e, category: c.name }))));
+      sortState = { categories, selectedEmoji: null, sorted: 0, total: allEmojis.length };
+
+      const pool = document.getElementById('sort-pool');
+      const buckets = document.getElementById('sort-buckets');
+      pool.innerHTML = '';
+      buckets.innerHTML = '';
+
+      allEmojis.forEach((item, i) => {
+        const el = document.createElement('div');
+        el.className = 'sort-emoji';
+        el.textContent = item.emoji;
+        el.dataset.emoji = item.emoji;
+        el.dataset.category = item.category;
+        el.dataset.index = i;
+        pool.appendChild(el);
+      });
+
+      categories.forEach(cat => {
+        const bucket = document.createElement('div');
+        bucket.className = 'sort-bucket';
+        bucket.dataset.category = cat.name;
+        bucket.innerHTML = `<div class="bucket-icon">${cat.icon}</div><div class="bucket-label">${cat.name}</div><div class="bucket-contents"></div>`;
+        buckets.appendChild(bucket);
+      });
+
+      setupSortInteraction();
+    }
+
+    function setupSortInteraction() {
+      // Clone to remove old event listeners from previous games
+      const oldPool = document.getElementById('sort-pool');
+      const newPool = oldPool.cloneNode(true);
+      oldPool.parentNode.replaceChild(newPool, oldPool);
+
+      const oldBuckets = document.getElementById('sort-buckets');
+      const newBuckets = oldBuckets.cloneNode(true);
+      oldBuckets.parentNode.replaceChild(newBuckets, oldBuckets);
+
+      const pool = document.getElementById('sort-pool');
+      const bucketsContainer = document.getElementById('sort-buckets');
+      let dragEl = null;
+
+      function trySortEmoji(emojiEl, bucketEl) {
+        const correct = emojiEl.dataset.category === bucketEl.dataset.category;
+        if (correct) {
+          const contents = bucketEl.querySelector('.bucket-contents');
+          const sorted = document.createElement('span');
+          sorted.className = 'sorted-emoji';
+          sorted.textContent = emojiEl.dataset.emoji;
+          contents.appendChild(sorted);
+          emojiEl.classList.add('sorted');
+          setTimeout(() => emojiEl.remove(), 400);
+          sortState.sorted++;
+          if (sortState.sorted === sortState.total) setTimeout(() => celebrate(), 400);
+        } else {
+          emojiEl.classList.add('wrong-sort');
+          setTimeout(() => emojiEl.classList.remove('wrong-sort', 'selected'), 400);
+        }
+        return correct;
+      }
+
+      // Tap bucket (after selecting an emoji)
+      bucketsContainer.addEventListener('pointerup', (e) => {
+        if (dragEl) return;
+        const bucket = e.target.closest('.sort-bucket');
+        if (!bucket || !sortState.selectedEmoji) return;
+        trySortEmoji(sortState.selectedEmoji, bucket);
+        sortState.selectedEmoji.classList.remove('selected');
+        sortState.selectedEmoji = null;
+      });
+
+      // Pointer events on emoji cards for drag + tap
+      pool.addEventListener('pointerdown', (e) => {
+        const emoji = e.target.closest('.sort-emoji');
+        if (!emoji || emoji.classList.contains('sorted')) return;
+        e.preventDefault();
+
+        const startX = e.clientX, startY = e.clientY;
+        let hasMoved = false;
+        let dragOffsetX = 0, dragOffsetY = 0;
+
+        const onMove = (me) => {
+          const dx = me.clientX - startX, dy = me.clientY - startY;
+          if (!hasMoved && Math.abs(dx) + Math.abs(dy) < 10) return;
+          hasMoved = true;
+
+          if (!dragEl) {
+            dragEl = emoji;
+            const rect = emoji.getBoundingClientRect();
+            dragOffsetX = startX - rect.left;
+            dragOffsetY = startY - rect.top;
+            emoji.classList.add('dragging');
+          }
+          dragEl.style.left = (me.clientX - dragOffsetX) + 'px';
+          dragEl.style.top = (me.clientY - dragOffsetY) + 'px';
+
+          document.querySelectorAll('.sort-bucket').forEach(b => b.classList.remove('highlight'));
+          const under = document.elementFromPoint(me.clientX, me.clientY);
+          const bucket = under ? under.closest('.sort-bucket') : null;
+          if (bucket) bucket.classList.add('highlight');
+        };
+
+        const onUp = (ue) => {
+          document.removeEventListener('pointermove', onMove);
+          document.removeEventListener('pointerup', onUp);
+
+          if (dragEl) {
+            dragEl.classList.remove('dragging');
+            dragEl.style.left = '';
+            dragEl.style.top = '';
+            document.querySelectorAll('.sort-bucket').forEach(b => b.classList.remove('highlight'));
+            const under = document.elementFromPoint(ue.clientX, ue.clientY);
+            const bucket = under ? under.closest('.sort-bucket') : null;
+            if (bucket) trySortEmoji(dragEl, bucket);
+            dragEl = null;
+          } else {
+            if (sortState.selectedEmoji) sortState.selectedEmoji.classList.remove('selected');
+            sortState.selectedEmoji = emoji;
+            emoji.classList.add('selected');
+          }
+        };
+
+        document.addEventListener('pointermove', onMove);
+        document.addEventListener('pointerup', onUp);
+      });
+    }
+
     // Placeholder game functions
-    function startSortGame() {}
     function openSettings() {}
 
     // === Task 1: Sparkle spawner ===
