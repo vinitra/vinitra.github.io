@@ -56,6 +56,39 @@
       border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 18px;
       cursor: pointer; z-index: 2; -webkit-tap-highlight-color: transparent;
     }
+
+    /* Match game styles */
+    #match-area {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      flex: 1;
+      width: 100%;
+      max-width: 500px;
+      padding: 8px 16px;
+      position: relative;
+    }
+    .match-column { display: flex; flex-direction: column; gap: 12px; z-index: 1; }
+    .match-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .emoji-card {
+      width: 72px; height: 72px; background: white; border-radius: 18px;
+      display: flex; align-items: center; justify-content: center; font-size: 36px;
+      box-shadow: 0 3px 12px rgba(233,30,99,0.12); cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s; -webkit-tap-highlight-color: transparent; position: relative;
+    }
+    .emoji-card.selected { transform: scale(1.1); box-shadow: 0 0 0 3px #ff6b9d, 0 4px 16px rgba(233,30,99,0.3); }
+    .emoji-card.matched { opacity: 0.6; pointer-events: none; }
+    .emoji-card.wrong { animation: matchShake 0.4s ease; }
+    @keyframes matchShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); } 40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); } 80% { transform: translateX(4px); }
+    }
+    .emoji-card.sparkle-pop { animation: sparkle-pop 0.5s ease; }
+    @keyframes sparkle-pop {
+      0% { transform: scale(1); } 50% { transform: scale(1.25); } 100% { transform: scale(1); opacity: 0.6; }
+    }
   </style>
 </head>
 <body>
@@ -80,7 +113,13 @@
   </div>
 
   <div id="match-screen" class="screen">
-    <button class="back-btn" onclick="goHome()">←</button>
+    <button class="back-btn" onclick="goHome()">&#8592;</button>
+    <h2 class="game-title rainbow-title" style="margin-top: 20px; font-size: 22px;">Match the Emojis!</h2>
+    <div id="match-area">
+      <div id="match-left" class="match-column"></div>
+      <svg id="match-lines" class="match-svg"></svg>
+      <div id="match-right" class="match-column"></div>
+    </div>
   </div>
 
   <div id="sort-screen" class="screen">
@@ -172,8 +211,151 @@
 
     function goHome() { showScreen('home-screen'); }
 
+    // === Task 4: Match game ===
+
+    let matchState = { pairs: [], selected: null, matched: 0, total: 0, dragging: false };
+
+    function startMatchGame() {
+      currentGame = 'match';
+      const diff = getDifficulty();
+      const pairs = selectMatchPairs(diff.matchPairs);
+      const leftEmojis = pairs.map(p => p[0]);
+      const rightEmojis = shuffle(pairs.map(p => p[1]));
+      matchState = { pairs, selected: null, matched: 0, total: pairs.length, dragging: false };
+
+      const leftCol = document.getElementById('match-left');
+      const rightCol = document.getElementById('match-right');
+      const svg = document.getElementById('match-lines');
+      leftCol.innerHTML = '';
+      rightCol.innerHTML = '';
+      svg.innerHTML = '';
+
+      leftEmojis.forEach((emoji, i) => {
+        const card = document.createElement('div');
+        card.className = 'emoji-card';
+        card.textContent = emoji;
+        card.dataset.emoji = emoji;
+        card.dataset.side = 'left';
+        card.dataset.index = i;
+        leftCol.appendChild(card);
+      });
+
+      rightEmojis.forEach((emoji, i) => {
+        const card = document.createElement('div');
+        card.className = 'emoji-card';
+        card.textContent = emoji;
+        card.dataset.emoji = emoji;
+        card.dataset.side = 'right';
+        card.dataset.index = i;
+        rightCol.appendChild(card);
+      });
+
+      setupMatchInteraction();
+    }
+
+    function setupMatchInteraction() {
+      // Clone the area to remove any old event listeners from previous games
+      const oldArea = document.getElementById('match-area');
+      const newArea = oldArea.cloneNode(true);
+      oldArea.parentNode.replaceChild(newArea, oldArea);
+
+      const area = document.getElementById('match-area');
+      const svg = document.getElementById('match-lines');
+      let dragLine = null;
+      let dragFrom = null;
+
+      function getCardCenter(card) {
+        const rect = card.getBoundingClientRect();
+        const areaRect = area.getBoundingClientRect();
+        return { x: rect.left + rect.width / 2 - areaRect.left, y: rect.top + rect.height / 2 - areaRect.top };
+      }
+
+      function findPair(emoji1, emoji2) {
+        return matchState.pairs.some(p =>
+          (p[0] === emoji1 && p[1] === emoji2) || (p[0] === emoji2 && p[1] === emoji1));
+      }
+
+      function drawLine(x1, y1, x2, y2, permanent) {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+        line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+        line.setAttribute('stroke', permanent ? 'url(#rainbow)' : 'rgba(255,107,157,0.5)');
+        line.setAttribute('stroke-width', permanent ? '3' : '2');
+        line.setAttribute('stroke-linecap', 'round');
+        svg.appendChild(line);
+        return line;
+      }
+
+      // Rainbow gradient for SVG lines
+      if (!svg.querySelector('#rainbow')) {
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        defs.innerHTML = '<linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="0%">' +
+          '<stop offset="0%" stop-color="#ff6b9d"/><stop offset="25%" stop-color="#ffa751"/>' +
+          '<stop offset="50%" stop-color="#7ed56f"/><stop offset="75%" stop-color="#55c1ff"/>' +
+          '<stop offset="100%" stop-color="#c084fc"/></linearGradient>';
+        svg.appendChild(defs);
+      }
+
+      function tryMatch(card1, card2) {
+        if (card1.dataset.side === card2.dataset.side) return false;
+        const isMatch = findPair(card1.dataset.emoji, card2.dataset.emoji);
+        if (isMatch) {
+          card1.classList.add('matched', 'sparkle-pop');
+          card2.classList.add('matched', 'sparkle-pop');
+          const c1 = getCardCenter(card1), c2 = getCardCenter(card2);
+          drawLine(c1.x, c1.y, c2.x, c2.y, true);
+          matchState.matched++;
+          if (matchState.matched === matchState.total) setTimeout(() => celebrate(), 400);
+        } else {
+          card1.classList.add('wrong');
+          card2.classList.add('wrong');
+          setTimeout(() => { card1.classList.remove('wrong', 'selected'); card2.classList.remove('wrong', 'selected'); }, 400);
+        }
+        return isMatch;
+      }
+
+      // Unified pointer handling
+      area.addEventListener('pointerdown', (e) => {
+        const card = e.target.closest('.emoji-card');
+        if (!card || card.classList.contains('matched')) return;
+        dragFrom = card;
+        card.classList.add('selected');
+        card.setPointerCapture(e.pointerId);
+        const c = getCardCenter(card);
+        const areaRect = area.getBoundingClientRect();
+        dragLine = drawLine(c.x, c.y, e.clientX - areaRect.left, e.clientY - areaRect.top, false);
+        matchState.dragging = true;
+      });
+
+      area.addEventListener('pointermove', (e) => {
+        if (!dragLine || !matchState.dragging) return;
+        const areaRect = area.getBoundingClientRect();
+        dragLine.setAttribute('x2', e.clientX - areaRect.left);
+        dragLine.setAttribute('y2', e.clientY - areaRect.top);
+      });
+
+      area.addEventListener('pointerup', (e) => {
+        if (!dragFrom) return;
+        if (dragLine) { dragLine.remove(); dragLine = null; }
+        const elUnder = document.elementFromPoint(e.clientX, e.clientY);
+        const targetCard = elUnder ? elUnder.closest('.emoji-card') : null;
+        if (targetCard && targetCard !== dragFrom && !targetCard.classList.contains('matched')) {
+          const matched = tryMatch(dragFrom, targetCard);
+          if (!matched) targetCard.classList.remove('selected');
+        }
+        dragFrom.classList.remove('selected');
+        dragFrom = null;
+        matchState.dragging = false;
+      });
+
+      area.addEventListener('pointercancel', () => {
+        if (dragLine) { dragLine.remove(); dragLine = null; }
+        if (dragFrom) { dragFrom.classList.remove('selected'); dragFrom = null; }
+        matchState.dragging = false;
+      });
+    }
+
     // Placeholder game functions
-    function startMatchGame() {}
     function startSortGame() {}
     function openSettings() {}
 
