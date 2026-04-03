@@ -133,6 +133,36 @@
     .bucket-icon { font-size: 24px; }
     .bucket-contents { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; min-height: 40px; }
     .bucket-contents .sorted-emoji { font-size: 28px; }
+
+    /* Overlay shared styles */
+    .overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 50; align-items: center; justify-content: center; }
+    .overlay.active { display: flex; }
+
+    /* Celebration overlay */
+    #confetti-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+    .celebration-content { z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .celebration-message {
+      font-size: 42px; font-weight: 800;
+      background: linear-gradient(90deg, #ff6b9d, #ffa751, #ffe259, #7ed56f, #55c1ff, #c084fc);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: bounce-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes bounce-in { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.2); } 100% { transform: scale(1); opacity: 1; } }
+    .celebration-play-again { animation: pulse 1.5s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+    /* Settings overlay */
+    #settings-overlay { background: rgba(0,0,0,0.3); z-index: 60; flex-direction: column; }
+    .settings-card { background: white; border-radius: 24px; padding: 24px; max-width: 320px; width: 90%; box-shadow: 0 8px 32px rgba(0,0,0,0.15); text-align: center; }
+    .difficulty-options { display: flex; flex-direction: column; gap: 10px; }
+    .diff-btn {
+      display: flex; flex-direction: column; align-items: center; padding: 14px;
+      border: 2px solid #f0f0f0; border-radius: 14px; background: white;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s; -webkit-tap-highlight-color: transparent;
+    }
+    .diff-btn.active { border-color: #ff6b9d; background: #fff0f5; }
+    .diff-label { font-size: 16px; font-weight: 700; color: #333; }
+    .diff-desc { font-size: 12px; color: #999; margin-top: 2px; }
   </style>
 </head>
 <body>
@@ -173,8 +203,38 @@
     <div id="sort-buckets" class="sort-buckets"></div>
   </div>
 
-  <div id="settings-overlay" class="overlay"></div>
-  <div id="celebration-overlay" class="overlay"></div>
+  <div id="settings-overlay" class="overlay">
+    <div class="settings-card">
+      <h2 style="color: #e91e63; margin-bottom: 16px; font-size: 20px;">&#9881;&#65039; Settings</h2>
+      <div class="difficulty-options">
+        <button class="diff-btn" data-diff="easy" onclick="setDifficulty('easy')">
+          <span class="diff-label">Easy</span>
+          <span class="diff-desc">4 pairs · 2 categories</span>
+        </button>
+        <button class="diff-btn" data-diff="medium" onclick="setDifficulty('medium')">
+          <span class="diff-label">Medium</span>
+          <span class="diff-desc">6 pairs · 3 categories</span>
+        </button>
+        <button class="diff-btn" data-diff="hard" onclick="setDifficulty('hard')">
+          <span class="diff-label">Hard</span>
+          <span class="diff-desc">8 pairs · 4 categories</span>
+        </button>
+      </div>
+      <button class="game-btn" style="margin-top: 20px; justify-content: center;" onclick="closeSettings()">
+        <span class="btn-text">Done</span>
+      </button>
+    </div>
+  </div>
+  <div id="celebration-overlay" class="overlay">
+    <canvas id="confetti-canvas"></canvas>
+    <div class="celebration-content">
+      <div id="celebration-message" class="celebration-message"></div>
+      <button class="game-btn celebration-play-again" id="play-again-btn">
+        <span class="btn-emoji">&#11088;</span>
+        <span class="btn-text">Play Again!</span>
+      </button>
+    </div>
+  </div>
 
   <script>
     // === Task 3: Emoji data and utilities ===
@@ -247,7 +307,59 @@
 
     let currentGame = null;
 
-    function celebrate() { alert('You did it!'); goHome(); }
+    function celebrate() {
+      const overlay = document.getElementById('celebration-overlay');
+      const messages = ['\ud83c\udf89 Yay! \ud83c\udf89', '\u2728 Amazing! \u2728', '\ud83c\udf1f You did it! \ud83c\udf1f'];
+      document.getElementById('celebration-message').textContent = messages[Math.floor(Math.random() * messages.length)];
+      overlay.classList.add('active');
+      startConfetti();
+
+      document.getElementById('play-again-btn').onclick = () => {
+        overlay.classList.remove('active');
+        if (currentGame === 'match') startMatchGame();
+        else if (currentGame === 'sort') startSortGame();
+      };
+    }
+
+    function startConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#ff6b9d','#ffa751','#ffe259','#7ed56f','#55c1ff','#c084fc','#ff85a2','#ffd700'];
+      const confetti = [];
+      for (let i = 0; i < 120; i++) {
+        confetti.push({
+          x: Math.random() * canvas.width,
+          y: -10 - Math.random() * canvas.height * 0.5,
+          w: 6 + Math.random() * 6, h: 10 + Math.random() * 8,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 3, vy: 2 + Math.random() * 4,
+          rotation: Math.random() * 360, rotationSpeed: (Math.random() - 0.5) * 10,
+        });
+      }
+
+      let frame = 0;
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        for (const c of confetti) {
+          c.x += c.vx; c.y += c.vy; c.vy += 0.05; c.rotation += c.rotationSpeed;
+          if (c.y < canvas.height + 20) alive = true;
+          ctx.save();
+          ctx.translate(c.x, c.y);
+          ctx.rotate((c.rotation * Math.PI) / 180);
+          ctx.fillStyle = c.color;
+          ctx.fillRect(-c.w / 2, -c.h / 2, c.w, c.h);
+          ctx.restore();
+        }
+        frame++;
+        if (alive && frame < 300) requestAnimationFrame(draw);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      requestAnimationFrame(draw);
+    }
 
     // === Task 2: Navigation ===
 
@@ -538,8 +650,24 @@
       });
     }
 
-    // Placeholder game functions
-    function openSettings() {}
+    function openSettings() {
+      document.getElementById('settings-overlay').classList.add('active');
+      document.querySelectorAll('.diff-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.diff === currentDifficulty);
+      });
+    }
+
+    function closeSettings() {
+      document.getElementById('settings-overlay').classList.remove('active');
+    }
+
+    function setDifficulty(level) {
+      currentDifficulty = level;
+      localStorage.setItem('emoji-difficulty', level);
+      document.querySelectorAll('.diff-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.diff === level);
+      });
+    }
 
     // === Task 1: Sparkle spawner ===
 
