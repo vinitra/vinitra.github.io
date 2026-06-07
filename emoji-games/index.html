@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#ffe0f0">
+  <title>Myla's Emoji Games</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(135deg, #ffe0f0, #fff0f5, #fce4ec);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overflow: hidden;
+      height: 100dvh;
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .screen { display: none; height: 100dvh; position: relative; }
+    .screen.active { display: flex; flex-direction: column; align-items: center; }
+
+    @keyframes sparkle-float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    .sparkles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .sparkle { position: absolute; animation: sparkle-float 3s ease-in infinite; opacity: 0; }
+
+    /* Home screen */
+    .home-emojis { font-size: 48px; margin-bottom: 8px; letter-spacing: 12px; }
+    .rainbow-title {
+      font-size: 28px; font-weight: 800;
+      background: linear-gradient(90deg, #ff6b9d, #ffa751, #ffe259, #7ed56f, #55c1ff, #c084fc);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 32px;
+    }
+    .home-buttons { display: flex; flex-direction: column; gap: 16px; }
+    .game-btn {
+      display: flex; align-items: center; gap: 14px; background: white; border: none;
+      border-radius: 20px; padding: 18px 24px; font-size: 18px; font-weight: 600; color: #333;
+      box-shadow: 0 4px 16px rgba(233, 30, 99, 0.15); cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s; -webkit-tap-highlight-color: transparent;
+    }
+    .game-btn:active { transform: scale(0.97); box-shadow: 0 2px 8px rgba(233, 30, 99, 0.2); }
+    .btn-emoji { font-size: 36px; }
+    .btn-text { text-align: left; }
+    .settings-btn {
+      position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.5);
+      border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 18px;
+      cursor: pointer; z-index: 2; -webkit-tap-highlight-color: transparent;
+    }
+    .back-btn {
+      position: absolute; top: 16px; left: 16px; background: rgba(255,255,255,0.5);
+      border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 18px;
+      cursor: pointer; z-index: 2; -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Match game styles */
+    #match-area {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      flex: 1;
+      width: 100%;
+      max-width: 500px;
+      padding: 8px 16px;
+      position: relative;
+    }
+    .match-column { display: flex; flex-direction: column; gap: 12px; z-index: 1; }
+    .match-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .emoji-card {
+      width: 72px; height: 72px; background: white; border-radius: 18px;
+      display: flex; align-items: center; justify-content: center; font-size: 36px;
+      box-shadow: 0 3px 12px rgba(233,30,99,0.12); cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s; -webkit-tap-highlight-color: transparent; position: relative;
+    }
+    .emoji-card.selected { transform: scale(1.1); box-shadow: 0 0 0 3px #ff6b9d, 0 4px 16px rgba(233,30,99,0.3); }
+    .emoji-card.matched { opacity: 0.6; pointer-events: none; }
+    .emoji-card.wrong { animation: matchShake 0.4s ease; }
+    @keyframes matchShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); } 40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); } 80% { transform: translateX(4px); }
+    }
+    .emoji-card.sparkle-pop { animation: sparkle-pop 0.5s ease; }
+    @keyframes sparkle-pop {
+      0% { transform: scale(1); } 50% { transform: scale(1.25); } 100% { transform: scale(1); opacity: 0.6; }
+    }
+
+    /* Sort game styles */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); } 40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); } 80% { transform: translateX(4px); }
+    }
+    .sort-pool {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      padding: 12px 16px; z-index: 1; min-height: 100px;
+    }
+    .sort-emoji {
+      width: 64px; height: 64px; background: white; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; font-size: 32px;
+      box-shadow: 0 3px 12px rgba(233,30,99,0.12); cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, opacity 0.3s;
+      -webkit-tap-highlight-color: transparent; touch-action: none;
+    }
+    .sort-emoji.selected {
+      transform: scale(1.1); box-shadow: 0 0 0 3px #ff6b9d, 0 4px 16px rgba(233,30,99,0.3);
+    }
+    .sort-emoji.dragging {
+      position: fixed; z-index: 100; transform: scale(1.15);
+      box-shadow: 0 8px 24px rgba(233,30,99,0.3); pointer-events: none;
+    }
+    .sort-emoji.sorted { animation: sparkle-pop 0.4s ease forwards; }
+    .sort-emoji.wrong-sort { animation: shake 0.4s ease; }
+    .sort-buckets {
+      display: flex; gap: 12px; padding: 12px 16px; justify-content: center;
+      flex-wrap: wrap; flex: 1; align-content: flex-start; z-index: 1;
+    }
+    .sort-bucket {
+      background: rgba(255,255,255,0.85); border-radius: 20px; padding: 14px;
+      min-width: 140px; min-height: 120px; flex: 1; max-width: 200px;
+      text-align: center; box-shadow: 0 3px 12px rgba(233,30,99,0.1);
+      transition: box-shadow 0.15s, transform 0.15s; -webkit-tap-highlight-color: transparent;
+    }
+    .sort-bucket.highlight {
+      box-shadow: 0 0 0 3px #ff6b9d, 0 4px 16px rgba(233,30,99,0.25); transform: scale(1.03);
+    }
+    .bucket-label { font-size: 14px; font-weight: 700; color: #e91e63; margin-bottom: 8px; }
+    .bucket-icon { font-size: 24px; }
+    .bucket-contents { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; min-height: 40px; }
+    .bucket-contents .sorted-emoji { font-size: 28px; }
+
+    /* Overlay shared styles */
+    .overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 50; align-items: center; justify-content: center; }
+    .overlay.active { display: flex; }
+
+    /* Celebration overlay */
+    #confetti-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+    .celebration-content { z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .celebration-message {
+      font-size: 42px; font-weight: 800;
+      background: linear-gradient(90deg, #ff6b9d, #ffa751, #ffe259, #7ed56f, #55c1ff, #c084fc);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: bounce-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes bounce-in { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.2); } 100% { transform: scale(1); opacity: 1; } }
+    .celebration-play-again { animation: pulse 1.5s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+    /* Settings overlay */
+    #settings-overlay { background: rgba(0,0,0,0.3); z-index: 60; flex-direction: column; }
+    .settings-card { background: white; border-radius: 24px; padding: 24px; max-width: 320px; width: 90%; box-shadow: 0 8px 32px rgba(0,0,0,0.15); text-align: center; }
+    .difficulty-options { display: flex; flex-direction: column; gap: 10px; }
+    .diff-btn {
+      display: flex; flex-direction: column; align-items: center; padding: 14px;
+      border: 2px solid #f0f0f0; border-radius: 14px; background: white;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s; -webkit-tap-highlight-color: transparent;
+    }
+    .diff-btn.active { border-color: #ff6b9d; background: #fff0f5; }
+    .diff-label { font-size: 16px; font-weight: 700; color: #333; }
+    .diff-desc { font-size: 12px; color: #999; margin-top: 2px; }
+
+    @media (max-width: 380px) {
+      .emoji-card { width: 60px; height: 60px; font-size: 28px; }
+      .sort-emoji { width: 54px; height: 54px; font-size: 26px; }
+      .sort-bucket { min-width: 100px; padding: 10px; }
+      .rainbow-title { font-size: 22px; }
+    }
+
+    @media (min-width: 768px) {
+      .emoji-card { width: 80px; height: 80px; font-size: 40px; }
+      .sort-emoji { width: 72px; height: 72px; font-size: 36px; }
+      .sort-bucket { min-width: 160px; min-height: 150px; }
+      .home-emojis { font-size: 64px; }
+      .rainbow-title { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkles" id="sparkles"></div>
+
+  <div id="home-screen" class="screen active">
+    <div style="padding: 40px 20px; text-align: center; z-index: 1; width: 100%; max-width: 400px;">
+      <div class="home-emojis">🦄 🌈 ⭐</div>
+      <h1 class="rainbow-title">Myla's Emoji Games</h1>
+      <div class="home-buttons">
+        <button class="game-btn" onclick="showScreen('match-screen'); startMatchGame()">
+          <span class="btn-emoji">🔗</span>
+          <span class="btn-text">Match the Emojis!</span>
+        </button>
+        <button class="game-btn" onclick="showScreen('sort-screen'); startSortGame()">
+          <span class="btn-emoji">📦</span>
+          <span class="btn-text">Sort the Emojis!</span>
+        </button>
+      </div>
+    </div>
+    <button class="settings-btn" onclick="openSettings()">⚙️</button>
+  </div>
+
+  <div id="match-screen" class="screen">
+    <button class="back-btn" onclick="goHome()">&#8592;</button>
+    <h2 class="game-title rainbow-title" style="margin-top: 20px; font-size: 22px;">Match the Emojis!</h2>
+    <div id="match-area">
+      <div id="match-left" class="match-column"></div>
+      <svg id="match-lines" class="match-svg"></svg>
+      <div id="match-right" class="match-column"></div>
+    </div>
+  </div>
+
+  <div id="sort-screen" class="screen">
+    <button class="back-btn" onclick="goHome()">&#8592;</button>
+    <h2 class="game-title rainbow-title" style="margin-top: 20px; font-size: 22px;">Sort the Emojis!</h2>
+    <div id="sort-pool" class="sort-pool"></div>
+    <div id="sort-buckets" class="sort-buckets"></div>
+  </div>
+
+  <div id="settings-overlay" class="overlay">
+    <div class="settings-card">
+      <h2 style="color: #e91e63; margin-bottom: 16px; font-size: 20px;">&#9881;&#65039; Settings</h2>
+      <div class="difficulty-options">
+        <button class="diff-btn" data-diff="easy" onclick="setDifficulty('easy')">
+          <span class="diff-label">Easy</span>
+          <span class="diff-desc">4 pairs · 2 categories</span>
+        </button>
+        <button class="diff-btn" data-diff="medium" onclick="setDifficulty('medium')">
+          <span class="diff-label">Medium</span>
+          <span class="diff-desc">6 pairs · 3 categories</span>
+        </button>
+        <button class="diff-btn" data-diff="hard" onclick="setDifficulty('hard')">
+          <span class="diff-label">Hard</span>
+          <span class="diff-desc">8 pairs · 4 categories</span>
+        </button>
+      </div>
+      <button class="game-btn" style="margin-top: 20px; justify-content: center;" onclick="closeSettings()">
+        <span class="btn-text">Done</span>
+      </button>
+    </div>
+  </div>
+  <div id="celebration-overlay" class="overlay">
+    <canvas id="confetti-canvas"></canvas>
+    <div class="celebration-content">
+      <div id="celebration-message" class="celebration-message"></div>
+      <button class="game-btn celebration-play-again" id="play-again-btn">
+        <span class="btn-emoji">&#11088;</span>
+        <span class="btn-text">Play Again!</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // === Task 3: Emoji data and utilities ===
+
+    const PAIRS = [
+      ['🐶','🦴'], ['☀️','🌻'], ['🌧️','☂️'], ['🐰','🥕'],
+      ['👶','🍼'], ['🎵','🎸'], ['🐟','🌊'], ['🌙','⭐'],
+      ['🐻','🍯'], ['🎨','🖌️'], ['🏠','🔑'], ['🌺','🦋'],
+      ['🍕','🧀'], ['✈️','☁️'], ['🐱','🧶'], ['🚀','🪐'],
+      ['🐸','🪷'], ['🦁','👑'], ['❄️','⛄'], ['🌈','🔆'],
+      ['🐵','🍌'], ['🐦','🪺'], ['🍪','🥛'], ['🏀','🏆'],
+    ];
+
+    const CATEGORIES = {
+      Animals:  { icon: '🐾', emojis: ['🐶','🐱','🐰','🐻','🦁','🐸','🐵','🦋','🐟','🐦','🐢','🐷','🐮','🦊'] },
+      Fruits:   { icon: '🍎', emojis: ['🍎','🍌','🍓','🍊','🍇','🍉','🍑','🍒','🫐','🥝'] },
+      Food:     { icon: '🍕', emojis: ['🍕','🍔','🧁','🍩','🍪','🌮','🍦','🍿','🥪','🧀'] },
+      Vehicles: { icon: '🚗', emojis: ['🚗','🚌','🚒','✈️','🚀','🚂','🚁','⛵','🛵','🚲'] },
+      Weather:  { icon: '☀️', emojis: ['☀️','🌧️','⛈️','🌈','❄️','🌙','⭐','☁️','🌪️'] },
+      Sports:   { icon: '⚽', emojis: ['⚽','🏀','🎾','⛷️','🏊','🚴','🏆','🥇'] },
+      Hearts:   { icon: '❤️', emojis: ['❤️','🧡','💛','💚','💙','💜','🩷','🖤','🤍'] },
+      Nature:   { icon: '🌸', emojis: ['🌸','🌻','🌺','🌴','🌵','🍀','🌊','🪻','🌹'] },
+      Music:    { icon: '🎵', emojis: ['🎵','🎸','🥁','🎹','🎺','🎷','🪘'] },
+    };
+
+    const DIFFICULTY = {
+      easy:   { matchPairs: 4, sortEmojis: 6, sortCategories: 2 },
+      medium: { matchPairs: 6, sortEmojis: 9, sortCategories: 3 },
+      hard:   { matchPairs: 8, sortEmojis: 12, sortCategories: 4 },
+    };
+
+    let currentDifficulty = localStorage.getItem('emoji-difficulty') || 'easy';
+    function getDifficulty() { return DIFFICULTY[currentDifficulty]; }
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function pickRandom(arr, n) { return shuffle(arr).slice(0, n); }
+
+    function selectMatchPairs(count) {
+      const shuffled = shuffle(PAIRS);
+      const selected = [];
+      const usedEmojis = new Set();
+      for (const pair of shuffled) {
+        if (selected.length >= count) break;
+        if (!usedEmojis.has(pair[0]) && !usedEmojis.has(pair[1])) {
+          selected.push(pair);
+          usedEmojis.add(pair[0]);
+          usedEmojis.add(pair[1]);
+        }
+      }
+      return selected;
+    }
+
+    function selectSortCategories(numCategories, emojisPerCategory) {
+      const names = shuffle(Object.keys(CATEGORIES));
+      const chosen = names.slice(0, numCategories);
+      const perCat = Math.floor(emojisPerCategory / numCategories);
+      return chosen.map(name => ({
+        name, icon: CATEGORIES[name].icon,
+        emojis: pickRandom(CATEGORIES[name].emojis, perCat),
+      }));
+    }
+
+    let currentGame = null;
+
+    function celebrate() {
+      const overlay = document.getElementById('celebration-overlay');
+      const messages = ['\ud83c\udf89 Yay! \ud83c\udf89', '\u2728 Amazing! \u2728', '\ud83c\udf1f You did it! \ud83c\udf1f'];
+      document.getElementById('celebration-message').textContent = messages[Math.floor(Math.random() * messages.length)];
+      overlay.classList.add('active');
+      startConfetti();
+
+      document.getElementById('play-again-btn').onclick = () => {
+        overlay.classList.remove('active');
+        if (currentGame === 'match') startMatchGame();
+        else if (currentGame === 'sort') startSortGame();
+      };
+    }
+
+    function startConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#ff6b9d','#ffa751','#ffe259','#7ed56f','#55c1ff','#c084fc','#ff85a2','#ffd700'];
+      const confetti = [];
+      for (let i = 0; i < 120; i++) {
+        confetti.push({
+          x: Math.random() * canvas.width,
+          y: -10 - Math.random() * canvas.height * 0.5,
+          w: 6 + Math.random() * 6, h: 10 + Math.random() * 8,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 3, vy: 2 + Math.random() * 4,
+          rotation: Math.random() * 360, rotationSpeed: (Math.random() - 0.5) * 10,
+        });
+      }
+
+      let frame = 0;
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        for (const c of confetti) {
+          c.x += c.vx; c.y += c.vy; c.vy += 0.05; c.rotation += c.rotationSpeed;
+          if (c.y < canvas.height + 20) alive = true;
+          ctx.save();
+          ctx.translate(c.x, c.y);
+          ctx.rotate((c.rotation * Math.PI) / 180);
+          ctx.fillStyle = c.color;
+          ctx.fillRect(-c.w / 2, -c.h / 2, c.w, c.h);
+          ctx.restore();
+        }
+        frame++;
+        if (alive && frame < 300) requestAnimationFrame(draw);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      requestAnimationFrame(draw);
+    }
+
+    // === Task 2: Navigation ===
+
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function goHome() { showScreen('home-screen'); }
+
+    // === Task 4: Match game ===
+
+    let matchState = { pairs: [], selected: null, matched: 0, total: 0, dragging: false };
+
+    function startMatchGame() {
+      currentGame = 'match';
+      const diff = getDifficulty();
+      const pairs = selectMatchPairs(diff.matchPairs);
+      const leftEmojis = pairs.map(p => p[0]);
+      const rightEmojis = shuffle(pairs.map(p => p[1]));
+      matchState = { pairs, selected: null, matched: 0, total: pairs.length, dragging: false };
+
+      const leftCol = document.getElementById('match-left');
+      const rightCol = document.getElementById('match-right');
+      const svg = document.getElementById('match-lines');
+      leftCol.innerHTML = '';
+      rightCol.innerHTML = '';
+      svg.innerHTML = '';
+
+      leftEmojis.forEach((emoji, i) => {
+        const card = document.createElement('div');
+        card.className = 'emoji-card';
+        card.textContent = emoji;
+        card.dataset.emoji = emoji;
+        card.dataset.side = 'left';
+        card.dataset.index = i;
+        leftCol.appendChild(card);
+      });
+
+      rightEmojis.forEach((emoji, i) => {
+        const card = document.createElement('div');
+        card.className = 'emoji-card';
+        card.textContent = emoji;
+        card.dataset.emoji = emoji;
+        card.dataset.side = 'right';
+        card.dataset.index = i;
+        rightCol.appendChild(card);
+      });
+
+      setupMatchInteraction();
+    }
+
+    function setupMatchInteraction() {
+      // Clone the area to remove any old event listeners from previous games
+      const oldArea = document.getElementById('match-area');
+      const newArea = oldArea.cloneNode(true);
+      oldArea.parentNode.replaceChild(newArea, oldArea);
+
+      const area = document.getElementById('match-area');
+      const svg = document.getElementById('match-lines');
+      let dragLine = null;
+      let dragFrom = null;
+
+      function getCardCenter(card) {
+        const rect = card.getBoundingClientRect();
+        const areaRect = area.getBoundingClientRect();
+        return { x: rect.left + rect.width / 2 - areaRect.left, y: rect.top + rect.height / 2 - areaRect.top };
+      }
+
+      function findPair(emoji1, emoji2) {
+        return matchState.pairs.some(p =>
+          (p[0] === emoji1 && p[1] === emoji2) || (p[0] === emoji2 && p[1] === emoji1));
+      }
+
+      function drawLine(x1, y1, x2, y2, permanent) {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+        line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+        line.setAttribute('stroke', permanent ? 'url(#rainbow)' : 'rgba(255,107,157,0.5)');
+        line.setAttribute('stroke-width', permanent ? '3' : '2');
+        line.setAttribute('stroke-linecap', 'round');
+        svg.appendChild(line);
+        return line;
+      }
+
+      // Rainbow gradient for SVG lines
+      if (!svg.querySelector('#rainbow')) {
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        defs.innerHTML = '<linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="0%">' +
+          '<stop offset="0%" stop-color="#ff6b9d"/><stop offset="25%" stop-color="#ffa751"/>' +
+          '<stop offset="50%" stop-color="#7ed56f"/><stop offset="75%" stop-color="#55c1ff"/>' +
+          '<stop offset="100%" stop-color="#c084fc"/></linearGradient>';
+        svg.appendChild(defs);
+      }
+
+      function tryMatch(card1, card2) {
+        if (card1.dataset.side === card2.dataset.side) return false;
+        const isMatch = findPair(card1.dataset.emoji, card2.dataset.emoji);
+        if (isMatch) {
+          card1.classList.add('matched', 'sparkle-pop');
+          card2.classList.add('matched', 'sparkle-pop');
+          const c1 = getCardCenter(card1), c2 = getCardCenter(card2);
+          drawLine(c1.x, c1.y, c2.x, c2.y, true);
+          matchState.matched++;
+          if (matchState.matched === matchState.total) setTimeout(() => celebrate(), 400);
+        } else {
+          card1.classList.add('wrong');
+          card2.classList.add('wrong');
+          setTimeout(() => { card1.classList.remove('wrong', 'selected'); card2.classList.remove('wrong', 'selected'); }, 400);
+        }
+        return isMatch;
+      }
+
+      // Unified pointer handling
+      area.addEventListener('pointerdown', (e) => {
+        const card = e.target.closest('.emoji-card');
+        if (!card || card.classList.contains('matched')) return;
+        dragFrom = card;
+        card.classList.add('selected');
+        card.setPointerCapture(e.pointerId);
+        const c = getCardCenter(card);
+        const areaRect = area.getBoundingClientRect();
+        dragLine = drawLine(c.x, c.y, e.clientX - areaRect.left, e.clientY - areaRect.top, false);
+        matchState.dragging = true;
+      });
+
+      area.addEventListener('pointermove', (e) => {
+        if (!dragLine || !matchState.dragging) return;
+        const areaRect = area.getBoundingClientRect();
+        dragLine.setAttribute('x2', e.clientX - areaRect.left);
+        dragLine.setAttribute('y2', e.clientY - areaRect.top);
+      });
+
+      area.addEventListener('pointerup', (e) => {
+        if (!dragFrom) return;
+        if (dragLine) { dragLine.remove(); dragLine = null; }
+        const elUnder = document.elementFromPoint(e.clientX, e.clientY);
+        const targetCard = elUnder ? elUnder.closest('.emoji-card') : null;
+        if (targetCard && targetCard !== dragFrom && !targetCard.classList.contains('matched')) {
+          const matched = tryMatch(dragFrom, targetCard);
+          if (!matched) targetCard.classList.remove('selected');
+        }
+        dragFrom.classList.remove('selected');
+        dragFrom = null;
+        matchState.dragging = false;
+      });
+
+      area.addEventListener('pointercancel', () => {
+        if (dragLine) { dragLine.remove(); dragLine = null; }
+        if (dragFrom) { dragFrom.classList.remove('selected'); dragFrom = null; }
+        matchState.dragging = false;
+      });
+    }
+
+    // === Task 5: Sort game ===
+
+    let sortState = { categories: [], selectedEmoji: null, sorted: 0, total: 0 };
+
+    function startSortGame() {
+      currentGame = 'sort';
+      const diff = getDifficulty();
+      const categories = selectSortCategories(diff.sortCategories, diff.sortEmojis);
+      const allEmojis = shuffle(categories.flatMap(c => c.emojis.map(e => ({ emoji: e, category: c.name }))));
+      sortState = { categories, selectedEmoji: null, sorted: 0, total: allEmojis.length };
+
+      const pool = document.getElementById('sort-pool');
+      const buckets = document.getElementById('sort-buckets');
+      pool.innerHTML = '';
+      buckets.innerHTML = '';
+
+      allEmojis.forEach((item, i) => {
+        const el = document.createElement('div');
+        el.className = 'sort-emoji';
+        el.textContent = item.emoji;
+        el.dataset.emoji = item.emoji;
+        el.dataset.category = item.category;
+        el.dataset.index = i;
+        pool.appendChild(el);
+      });
+
+      categories.forEach(cat => {
+        const bucket = document.createElement('div');
+        bucket.className = 'sort-bucket';
+        bucket.dataset.category = cat.name;
+        bucket.innerHTML = `<div class="bucket-icon">${cat.icon}</div><div class="bucket-label">${cat.name}</div><div class="bucket-contents"></div>`;
+        buckets.appendChild(bucket);
+      });
+
+      setupSortInteraction();
+    }
+
+    function setupSortInteraction() {
+      // Clone to remove old event listeners from previous games
+      const oldPool = document.getElementById('sort-pool');
+      const newPool = oldPool.cloneNode(true);
+      oldPool.parentNode.replaceChild(newPool, oldPool);
+
+      const oldBuckets = document.getElementById('sort-buckets');
+      const newBuckets = oldBuckets.cloneNode(true);
+      oldBuckets.parentNode.replaceChild(newBuckets, oldBuckets);
+
+      const pool = document.getElementById('sort-pool');
+      const bucketsContainer = document.getElementById('sort-buckets');
+      let dragEl = null;
+
+      function trySortEmoji(emojiEl, bucketEl) {
+        const correct = emojiEl.dataset.category === bucketEl.dataset.category;
+        if (correct) {
+          const contents = bucketEl.querySelector('.bucket-contents');
+          const sorted = document.createElement('span');
+          sorted.className = 'sorted-emoji';
+          sorted.textContent = emojiEl.dataset.emoji;
+          contents.appendChild(sorted);
+          emojiEl.classList.add('sorted');
+          setTimeout(() => emojiEl.remove(), 400);
+          sortState.sorted++;
+          if (sortState.sorted === sortState.total) setTimeout(() => celebrate(), 400);
+        } else {
+          emojiEl.classList.add('wrong-sort');
+          setTimeout(() => emojiEl.classList.remove('wrong-sort', 'selected'), 400);
+        }
+        return correct;
+      }
+
+      // Tap bucket (after selecting an emoji)
+      bucketsContainer.addEventListener('pointerup', (e) => {
+        if (dragEl) return;
+        const bucket = e.target.closest('.sort-bucket');
+        if (!bucket || !sortState.selectedEmoji) return;
+        trySortEmoji(sortState.selectedEmoji, bucket);
+        sortState.selectedEmoji.classList.remove('selected');
+        sortState.selectedEmoji = null;
+      });
+
+      // Pointer events on emoji cards for drag + tap
+      pool.addEventListener('pointerdown', (e) => {
+        const emoji = e.target.closest('.sort-emoji');
+        if (!emoji || emoji.classList.contains('sorted')) return;
+        e.preventDefault();
+
+        const startX = e.clientX, startY = e.clientY;
+        let hasMoved = false;
+        let dragOffsetX = 0, dragOffsetY = 0;
+
+        const onMove = (me) => {
+          const dx = me.clientX - startX, dy = me.clientY - startY;
+          if (!hasMoved && Math.abs(dx) + Math.abs(dy) < 10) return;
+          hasMoved = true;
+
+          if (!dragEl) {
+            dragEl = emoji;
+            const rect = emoji.getBoundingClientRect();
+            dragOffsetX = startX - rect.left;
+            dragOffsetY = startY - rect.top;
+            emoji.classList.add('dragging');
+          }
+          dragEl.style.left = (me.clientX - dragOffsetX) + 'px';
+          dragEl.style.top = (me.clientY - dragOffsetY) + 'px';
+
+          document.querySelectorAll('.sort-bucket').forEach(b => b.classList.remove('highlight'));
+          const under = document.elementFromPoint(me.clientX, me.clientY);
+          const bucket = under ? under.closest('.sort-bucket') : null;
+          if (bucket) bucket.classList.add('highlight');
+        };
+
+        const onUp = (ue) => {
+          document.removeEventListener('pointermove', onMove);
+          document.removeEventListener('pointerup', onUp);
+
+          if (dragEl) {
+            dragEl.classList.remove('dragging');
+            dragEl.style.left = '';
+            dragEl.style.top = '';
+            document.querySelectorAll('.sort-bucket').forEach(b => b.classList.remove('highlight'));
+            const under = document.elementFromPoint(ue.clientX, ue.clientY);
+            const bucket = under ? under.closest('.sort-bucket') : null;
+            if (bucket) trySortEmoji(dragEl, bucket);
+            dragEl = null;
+          } else {
+            if (sortState.selectedEmoji) sortState.selectedEmoji.classList.remove('selected');
+            sortState.selectedEmoji = emoji;
+            emoji.classList.add('selected');
+          }
+        };
+
+        document.addEventListener('pointermove', onMove);
+        document.addEventListener('pointerup', onUp);
+      });
+    }
+
+    function openSettings() {
+      document.getElementById('settings-overlay').classList.add('active');
+      document.querySelectorAll('.diff-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.diff === currentDifficulty);
+      });
+    }
+
+    function closeSettings() {
+      document.getElementById('settings-overlay').classList.remove('active');
+    }
+
+    function setDifficulty(level) {
+      currentDifficulty = level;
+      localStorage.setItem('emoji-difficulty', level);
+      document.querySelectorAll('.diff-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.diff === level);
+      });
+    }
+
+    // === Task 1: Sparkle spawner ===
+
+    function spawnSparkles() {
+      const container = document.getElementById('sparkles');
+      const symbols = ['✨', '⭐', '💖', '🌟'];
+      setInterval(() => {
+        const el = document.createElement('span');
+        el.className = 'sparkle';
+        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.bottom = '-20px';
+        el.style.animationDuration = (2 + Math.random() * 3) + 's';
+        el.style.fontSize = (10 + Math.random() * 14) + 'px';
+        container.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      }, 400);
+    }
+    spawnSparkles();
+  </script>
+</body>
+</html>
