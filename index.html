@@ -29,7 +29,7 @@
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/resume.min.css?v=5" rel="stylesheet">
+    <link href="css/resume.min.css?v=9" rel="stylesheet">
 
     <link rel="shortcut icon" href="old/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="old/images/favicon.ico" type="image/x-icon">
@@ -110,7 +110,7 @@
   My PhD research was awarded the
   <a href="https://actu.epfl.ch/news/vinitra-swamy-awarded-2025-patrick-denantes-memo-3/" target="_blank" rel="noopener noreferrer">Patrick Denantes Prize</a>
   for EPFL's best CS thesis, and I was also fortunate to be named a
-  <a href="https://datascience.ucsd.edu/rising-stars-in-data-science/#1729030232449-20b9bc13-ee09" target="_blank" rel="noopener noreferrer">Rising Star in Data Science</a> by Stanford University.
+  Rising Star in Data Science by Stanford University.
 </p>
 
 <p>
@@ -157,10 +157,10 @@
 
 <div class="press-reel-label" id="press">In the press</div>
 <div class="press-reel">
-  <a class="press-card" href="https://aceventures.vc/schole-ai-raises-3m-to-transform-workforce-learning-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer">
+  <a class="press-card" href="https://finance.yahoo.com/news/schol-ai-raises-3m-transform-140000166.html" target="_blank" rel="noopener noreferrer">
     <div class="press-card-figure"><img src="img/press/funding.jpg" alt="Scholé AI co-founders Vinitra Swamy and Paola Mejia"></div>
     <div class="press-card-body">
-      <div class="press-card-source">ACE Ventures · 2026</div>
+      <div class="press-card-source">Yahoo Finance · 2026</div>
       <p class="press-card-title">Scholé AI raises $3M to transform workforce learning in the age of AI</p>
     </div>
   </a>
@@ -185,9 +185,17 @@
       <p class="press-card-title">G-Research PhD Prize winner at EPFL</p>
     </div>
   </a>
+  <a class="press-card" href="https://www.lefigaro.fr/economie/learning-in-the-age-of-ai-how-schole-is-rethinking-workplace-education-20260430" target="_blank" rel="noopener noreferrer">
+    <div class="press-card-figure"><img src="img/press/lefigaro.jpg" alt="Vinitra Swamy featured by Le Figaro for Scholé"></div>
+    <div class="press-card-body">
+      <div class="press-card-source">Le Figaro · 2026</div>
+      <p class="press-card-title">Learning in the age of AI: how Scholé is rethinking workplace education</p>
+    </div>
+  </a>
 </div>
 
-          <ul class="list-inline list-social-icons mb-0">
+          <div class="social-kudos-row">
+            <ul class="list-inline list-social-icons mb-0">
             <li class="list-inline-item">
               <a href="http://linkedin.com/in/vinitra">
                 <span class="fa-stack fa-lg">
@@ -220,7 +228,13 @@
                 </span>
               </a>
             </li>
-          </ul>
+            </ul>
+
+            <button class="party" type="button" id="partyBtn" aria-label="Throw confetti">
+              <span class="party-icon" aria-hidden="true">🎉</span>
+              <span class="party-count" id="partyCount">27</span>
+            </button>
+          </div>
             </div>
             <div class="resume-date text-md-right">
             </div>
@@ -236,7 +250,7 @@
             <div class="resume-content mr-auto">
               <p>✨🎓 My PhD thesis on <a href="https://infoscience.epfl.ch/entities/publication/2dfd743f-90af-42c3-aa9b-efcc87686d29">"A Human-Centric Approach to Explainable AI for Personalized Education"</a> is now available!</p>
               <p>For a full list of publications, please visit my <a href="https://scholar.google.com/citations?hl=en&user=SX9GAqwAAAAJ">Google Scholar</a> page.</p>
-              <p>During my PhD, I was fortunate to be recognized by Stanford, UCSD and UChicago as a <em><a href="https://datascience.ucsd.edu/rising-stars-in-data-science/#1729030232449-20b9bc13-ee09">"Rising Star in Data Science"</a></em>,
+              <p>During my PhD, I was fortunate to be recognized by Stanford, UCSD and UChicago as a <em>"Rising Star in Data Science"</em>,
                 and awarded the <a href="https://www.gresearch.com/news/g-research-2024-phd-prize-winners-epfl/">GResearch PhD Award</a>, the <img class="mx-auto mb-1" src="img/epfl.png" width="37"> IC Distinguished Service Award three times, and most recently the <a href="https://actu.epfl.ch/news/vinitra-swamy-awarded-2025-patrick-denantes-memo-3/">Patrick Denantes Memorial Prize</a> for EPFL's best CS thesis.
               </p>
             </div>
@@ -1158,6 +1172,154 @@
           }
         });
       });
+    </script>
+
+    <!-- Party button: global counter (Abacus) + confetti -->
+    <script>
+      (function () {
+        var KEY = 'vs-kudos';
+        var MAX = 9;
+        var API = 'https://abacus.jasoncameron.dev';
+        var COUNTER = '/vinitra.github.io/kudos';
+        var COLORS = ['#008080', '#f4a261', '#e76f51', '#2a9d8f', '#e9c46a', '#9b5de5'];
+        var PIECES = 34;
+        var GRAVITY = 0.16;
+        var DRAG = 0.985;
+        var LIFE = 110;
+
+        var btn = document.getElementById('partyBtn');
+        var out = document.getElementById('partyCount');
+        if (!btn || !out) return;
+
+        var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var mine = 0;
+        var total = parseInt(out.textContent, 10) || 0;
+
+        function readMine() {
+          try {
+            var n = parseInt(window.localStorage.getItem(KEY), 10);
+            return isNaN(n) ? 0 : Math.max(0, Math.min(n, MAX));
+          } catch (e) {
+            return 0;
+          }
+        }
+
+        function render() {
+          out.textContent = total;
+          btn.classList.toggle('is-given', mine > 0);
+          btn.classList.toggle('is-maxed', mine >= MAX);
+        }
+
+        mine = readMine();
+        render();
+
+        fetch(API + '/get' + COUNTER)
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (typeof d.value === 'number') { total = d.value; render(); }
+          })
+          .catch(function () {});
+
+        /* --- confetti --- */
+        var canvas, ctx, pieces = [], raf = null;
+
+        function ensureCanvas() {
+          if (canvas) return;
+          canvas = document.createElement('canvas');
+          canvas.className = 'party-canvas';
+          document.body.appendChild(canvas);
+          ctx = canvas.getContext('2d');
+          resize();
+          window.addEventListener('resize', resize);
+        }
+
+        function resize() {
+          var dpr = window.devicePixelRatio || 1;
+          canvas.width = window.innerWidth * dpr;
+          canvas.height = window.innerHeight * dpr;
+          canvas.style.width = window.innerWidth + 'px';
+          canvas.style.height = window.innerHeight + 'px';
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        function burst() {
+          ensureCanvas();
+          var box = btn.getBoundingClientRect();
+          var ox = box.left + box.width / 2;
+          var oy = box.top + box.height / 2;
+
+          for (var i = 0; i < PIECES; i++) {
+            var angle = -Math.PI / 2 + (Math.random() - 0.5) * 2.1;
+            var speed = 4 + Math.random() * 5;
+            pieces.push({
+              x: ox,
+              y: oy,
+              vx: Math.cos(angle) * speed + (Math.random() - 0.5) * 1.6,
+              vy: Math.sin(angle) * speed,
+              w: 5 + Math.random() * 5,
+              h: 3 + Math.random() * 5,
+              spin: (Math.random() - 0.5) * 0.32,
+              rot: Math.random() * Math.PI,
+              color: COLORS[(Math.random() * COLORS.length) | 0],
+              life: LIFE
+            });
+          }
+          if (!raf) raf = window.requestAnimationFrame(tick);
+        }
+
+        function tick() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          for (var i = pieces.length - 1; i >= 0; i--) {
+            var p = pieces[i];
+            p.vy += GRAVITY;
+            p.vx *= DRAG;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.rot += p.spin;
+            p.life -= 1;
+
+            if (p.life <= 0 || p.y > window.innerHeight + 40) {
+              pieces.splice(i, 1);
+              continue;
+            }
+
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.globalAlpha = Math.min(1, p.life / 35);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+          }
+
+          if (pieces.length) {
+            raf = window.requestAnimationFrame(tick);
+          } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            raf = null;
+          }
+        }
+
+        btn.addEventListener('click', function () {
+          if (mine >= MAX) return;
+          mine += 1;
+          total += 1;
+          try { window.localStorage.setItem(KEY, mine); } catch (e) {}
+          render();
+
+          btn.classList.remove('is-bump');
+          void btn.offsetWidth;
+          btn.classList.add('is-bump');
+          if (!reduced) burst();
+
+          fetch(API + '/hit' + COUNTER)
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+              if (typeof d.value === 'number') { total = d.value; render(); }
+            })
+            .catch(function () {});
+        });
+      })();
     </script>
 
   </body>
