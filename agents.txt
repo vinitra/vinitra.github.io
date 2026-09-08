@@ -1,0 +1,32 @@
+# Vinitra Swamy
+
+> Personal site of Vinitra Swamy: AI researcher, CEO and co-founder of Scholé AI (EPFL spin-off for AI-native workforce learning), teaching faculty for Harvard Data Science Initiative AI Intensives. PhD in Computer Science from EPFL (2025), co-advised by Tanja Käser (ML4ED) and Martin Jaggi (MLO). Awarded the 2025 Patrick Denantes Memorial Prize for EPFL's best CS thesis and the 2024 G-Research PhD Prize.
+
+Site: https://vinitra.github.io
+Contact: vinitra@berkeley.edu
+Company: https://schole.ai
+Google Scholar: https://scholar.google.com/citations?user=SX9GAqwAAAAJ
+GitHub: https://github.com/vinitra
+LinkedIn: https://linkedin.com/in/vinitra
+
+## Sections
+
+- [About](https://vinitra.github.io/#about): bio, research interests (ML for education, explainable AI, generalized and multimodal learning), press highlights
+- [Research](https://vinitra.github.io/#research): selected publications 2017 to 2026, including InterpretCC (ICLR 2025), iLLuMinaTE (AAAI 2025), MultiModN (NeurIPS 2023), Meditron-70B, Trusting the Explainers (LAK 2023), and the PhD thesis "A Human-Centric Approach to Explainable AI for Personalized Education"
+- [Industry](https://vinitra.github.io/#experience): Scholé AI (2025 to present), Microsoft AI and ONNX (2018 to 2020), Berkeley BIDS and RISELab, IBM Research, LinkedIn, Google
+- [Education](https://vinitra.github.io/#education): EPFL PhD (2020 to 2025), UC Berkeley MS EECS (2017 to 2018), UC Berkeley BS CS (2015 to 2017)
+- [Teaching](https://vinitra.github.io/#speaking): Harvard DSI AI Intensives, EPFL CS 421 and TA roles, UW CSE/STAT 416, UC Berkeley Data 8; workshop organizing and program committees
+- [Awards](https://vinitra.github.io/#awards): prizes and a full list of speaking engagements
+- [News](https://vinitra.github.io/#news): press coverage 2013 to 2026, including the Scholé AI $3M seed round (January 2026) and the 2026 GSV Cup 50 selection
+
+## Key facts
+
+- Youngest recipient of an MS in Computer Science in UC Berkeley history (age 20)
+- Named a Rising Star in Data Science (Stanford, UCSD, UChicago), 2024
+- Scholé AI raised $3M led by ACE Ventures with The House Fund and FundF, January 2026
+- Scholé AI selected for the 2026 GSV Cup 50 at the ASU+GSV Summit
+- Co-founder: Paola Mejia-Domenzain (CTO)
+
+## Files
+
+- [Academic CV (PDF)](https://vinitra.github.io/academic-cv.pdf)

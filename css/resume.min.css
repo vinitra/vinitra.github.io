@@ -148,3 +148,62 @@
 .press-card-figure .press-card-mark{display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:linear-gradient(135deg,#f4f6f6 0%,#e6eded 100%);font-family:'Saira Extra Condensed',serif;text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-size:1.6rem;color:#008080;text-align:center;padding:0 .6rem}
 .news-timeline{position:relative;margin:0 0 1rem}.news-year{position:relative;padding-left:5.25rem;margin-bottom:1.6rem}.news-year::before{content:attr(data-year);position:absolute;left:0;top:.1rem;font-family:'Saira Extra Condensed',serif;font-weight:700;font-size:1.7rem;line-height:1;color:#008080}.news-year::after{content:'';position:absolute;left:3.85rem;top:.35rem;bottom:-1.2rem;width:2px;background:#e3e7e7}.news-year:last-child::after{bottom:0}.news-item{position:relative;display:flex;align-items:flex-start;gap:.75rem;padding:.55rem .75rem;margin:0 0 .35rem -.75rem;border-radius:3px;color:#343a40;text-decoration:none;transition:background .15s ease,transform .15s ease}.news-item::before{content:'';position:absolute;left:-1.5rem;top:1.05rem;width:.6rem;height:.6rem;border-radius:50%;background:#fff;border:2px solid #008080;transition:background .15s ease}.news-item:hover{background:#f2f7f7;text-decoration:none;color:#008080;transform:translateX(3px)}.news-item:hover::before{background:#008080}.news-date{flex:0 0 4.25rem;font-family:'Saira Extra Condensed',serif;text-transform:uppercase;font-size:.95rem;letter-spacing:.03em;color:#868e96;padding-top:.15rem}.news-logo{flex:0 0 1.35rem;width:1.35rem;height:1.35rem;border-radius:4px;object-fit:contain;background:#fff;border:1px solid #e9ecef;padding:1px;margin-top:.05rem}.news-text{flex:1 1 0;min-width:0;font-size:.92rem;line-height:1.45;overflow-wrap:anywhere}.news-item{max-width:100%}.news-timeline{max-width:100%;min-width:0}.news-source{display:inline-block;font-family:'Saira Extra Condensed',serif;text-transform:uppercase;font-weight:700;font-size:.85rem;letter-spacing:.04em;color:#008080;margin-right:.45rem;vertical-align:baseline}.news-older{margin-top:.5rem}.news-older>summary{cursor:pointer;list-style:none;display:inline-block;font-family:'Saira Extra Condensed',serif;text-transform:uppercase;font-weight:700;letter-spacing:.05em;font-size:1.05rem;color:#868e96;padding:.4rem 0 1rem;user-select:none}.news-older>summary::-webkit-details-marker{display:none}.news-older>summary::before{content:'+ ';color:#008080}.news-older[open]>summary::before{content:'− '}.news-older>summary:hover{color:#008080}
 @media (max-width:575.98px){.news-year{padding-left:0;padding-top:2rem}.news-year::before{top:0;font-size:1.4rem}.news-year::after{display:none}.news-item{margin-left:0;padding-left:.5rem}.news-item::before{display:none}.news-date{flex-basis:3.9rem;font-size:.85rem}}
+
+/* ---------- 2026 modernization ---------- */
+:root{--teal:#008080;--teal-soft:#e6f2f2;--ink:#2b3036;--ink-2:#4b545c;--muted:#6f7981;--line:#e3e7ea;--card:#fff;--page:#fafbfb}
+body{color:var(--ink-2);background:var(--page);line-height:1.6}
+section.resume-section{min-height:0!important;border-bottom:1px solid var(--line);padding-top:4rem!important;padding-bottom:4rem!important}
+@media (min-width:992px){section.resume-section{padding-top:4.5rem!important;padding-bottom:4.5rem!important}}
+section.resume-section>.my-auto{max-width:62rem}
+h2{font-size:3rem;position:relative;padding-bottom:.6rem;margin-bottom:2.25rem!important}
+h2::after{content:'';position:absolute;left:0;bottom:0;width:3.25rem;height:4px;border-radius:2px;background:var(--teal)}
+h3{font-size:1.7rem;letter-spacing:.01em}
+.subheading{color:var(--muted)}
+a{transition:color .15s ease}
+#about h1{margin-top:.5rem}
+#about .subheading{letter-spacing:.04em}
+#about p{font-size:1.02rem;max-width:44rem}
+#about .fa-ul li{margin-bottom:.25rem}
+#about .fa-ul .fa-check{color:var(--teal)}
+/* sidebar */
+#sideNav{background:linear-gradient(180deg,#008a8a 0%,#006e6e 100%)!important}
+@media (min-width:992px){#sideNav .navbar-nav .nav-item .nav-link{color:rgba(255,255,255,.72);padding:.45rem 1.1rem;margin:.1rem .9rem;border-radius:6px;font-size:.95rem;letter-spacing:.06em;transition:background .15s ease,color .15s ease}#sideNav .navbar-nav .nav-item .nav-link:hover{color:#fff;background:rgba(255,255,255,.1)}#sideNav .navbar-nav .nav-item .nav-link.active{color:#fff;background:rgba(255,255,255,.16)}#sideNav .navbar-brand .img-profile{border:.35rem solid rgba(255,255,255,.25);box-shadow:0 10px 30px rgba(0,0,0,.18)}}
+/* resume entries as cards */
+#experience .resume-item,#education .resume-item,#speaking .resume-item{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1.4rem 1.6rem;margin-bottom:1.1rem!important;position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+#experience .resume-item::before,#education .resume-item::before,#speaking .resume-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--teal);opacity:.75}
+#experience .resume-item:hover,#education .resume-item:hover,#speaking .resume-item:hover{border-color:var(--teal);box-shadow:0 10px 24px rgba(0,128,128,.10);transform:translateY(-2px)}
+.resume-item h3{font-size:1.55rem;color:var(--ink);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.resume-item h3 img{margin:0!important}
+.resume-item .subheading{font-size:1.1rem;margin-bottom:.75rem!important}
+.resume-item p:last-child{margin-bottom:0}
+.resume-item .fa-ul{margin-left:1.6rem}
+.resume-item .fa-ul li{margin-bottom:.3rem}
+.resume-item .fa-ul .fa-li{color:var(--teal)!important}
+.resume-item>br,.resume-content>br{display:none}
+.resume-date{min-width:auto!important}
+.resume-date .text-primary{display:inline-block;font-family:'Saira Extra Condensed',serif;font-weight:700;font-size:1rem;letter-spacing:.05em;text-transform:uppercase;background:var(--teal-soft);color:var(--teal)!important;border-radius:999px;padding:.25rem .8rem;white-space:nowrap}
+@media (max-width:767.98px){.resume-date{margin-top:.75rem}}
+/* awards grid */
+.award-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.85rem;margin-bottom:2.5rem}
+.award-card{display:flex;align-items:flex-start;gap:.8rem;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.05rem;font-size:.93rem;line-height:1.45;color:var(--ink-2);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.award-card:hover{border-color:var(--teal);box-shadow:0 8px 20px rgba(0,128,128,.10);transform:translateY(-2px)}
+.award-card .award-icon{flex:0 0 2rem;width:2rem;height:2rem;border-radius:50%;background:var(--teal-soft);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.award-card img{vertical-align:-3px;margin-right:.15rem}
+/* speaking timeline */
+.speaking-heading{margin-top:1rem;color:var(--ink)}
+.talk-timeline{margin-top:1rem}
+.talk-year{position:relative;padding-left:5.25rem;margin-bottom:1.4rem}
+.talk-year::before{content:attr(data-year);position:absolute;left:0;top:.05rem;font-family:'Saira Extra Condensed',serif;font-weight:700;font-size:1.6rem;line-height:1;color:var(--teal)}
+.talk-year::after{content:'';position:absolute;left:3.85rem;top:.35rem;bottom:-1rem;width:2px;background:var(--line)}
+.talk-year:last-child::after{bottom:0}
+.talk-item{position:relative;display:flex;gap:.75rem;align-items:flex-start;padding:.4rem .75rem;margin:0 0 .15rem -.75rem;border-radius:4px;font-size:.93rem;line-height:1.5;transition:background .15s ease}
+.talk-item::before{content:'';position:absolute;left:-1.5rem;top:.9rem;width:.6rem;height:.6rem;border-radius:50%;background:#fff;border:2px solid var(--teal)}
+.talk-item:hover{background:#f0f6f6}
+.talk-item:hover::before{background:var(--teal)}
+.talk-season{flex:0 0 4.25rem;font-family:'Saira Extra Condensed',serif;text-transform:uppercase;font-size:.95rem;letter-spacing:.03em;color:var(--muted);padding-top:.1rem}
+.talk-text{flex:1 1 0;min-width:0}
+.talk-text img{vertical-align:-3px}
+@media (max-width:575.98px){.talk-year{padding-left:0;padding-top:1.9rem}.talk-year::before{top:0;font-size:1.35rem}.talk-year::after{display:none}.talk-item{margin-left:0;padding-left:.5rem}.talk-item::before{display:none}.talk-season{flex-basis:3.9rem;font-size:.85rem}}
+/* research + press: match radius */
+.cube,.press-card{border-radius:8px}
+.news-item{color:var(--ink-2)}
