@@ -29,7 +29,7 @@
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/resume.min.css?v=11" rel="stylesheet">
+    <link href="css/resume.min.css?v=12" rel="stylesheet">
     <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
 
     <link rel="shortcut icon" href="old/images/favicon.ico" type="image/x-icon">
@@ -110,8 +110,8 @@
   in 2025, co-advised by Prof. Tanja Käser and Prof. Martin Jaggi.
   My PhD research was awarded the
   <a href="https://actu.epfl.ch/news/vinitra-swamy-awarded-2025-patrick-denantes-memo-3/" target="_blank" rel="noopener noreferrer">Patrick Denantes Prize</a>
-  for EPFL's best CS thesis, and I was also fortunate to be named a
-  Rising Star in Data Science by Stanford University.
+  for EPFL's best CS thesis (<a href="https://infoscience.epfl.ch/entities/publication/2dfd743f-90af-42c3-aa9b-efcc87686d29" target="_blank" rel="noopener noreferrer">read the thesis</a>),
+  and I was also fortunate to be named a Rising Star in Data Science by Stanford University.
 </p>
 
 <p>
@@ -1208,6 +1208,24 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/resume.min.js"></script>
+
+    <!-- Clickable cards: card click follows its primary link -->
+    <script>
+      (function () {
+        var SELECTORS = '.cube, .talk-item, .award-card, #experience .resume-item, #education .resume-item, #speaking .resume-item';
+        document.querySelectorAll(SELECTORS).forEach(function (card) {
+          var link = card.querySelector('.cube-links a') || card.querySelector('h3 a') || card.querySelector('a[href]');
+          if (!link) return;
+          card.classList.add('is-linkable');
+          card.setAttribute('title', 'Open: ' + (link.textContent.trim() || link.href));
+          card.addEventListener('click', function (e) {
+            if (e.target.closest('a, button, .cube-toggle, .cube-abstract')) return;
+            if (window.getSelection && String(window.getSelection())) return;
+            window.open(link.href, '_blank', 'noopener');
+          });
+        });
+      })();
+    </script>
 
     <!-- Research cube expand/collapse -->
     <script>
