@@ -30,3 +30,25 @@ LinkedIn: https://linkedin.com/in/vinitra
 ## Files
 
 - [Academic CV (PDF)](https://vinitra.github.io/academic-cv.pdf)
+
+## Scholé comparison pages
+
+Index: https://vinitra.github.io/compare/
+Each page compares Scholé AI with one platform side by side (content model, personalization, formats, grounding, assessment, setup, AI and data, languages, research basis), with a fair "where they are strong" section and FAQ.
+- [Scholé vs Coursera](https://vinitra.github.io/coursera/)
+- [Scholé vs Udemy Business](https://vinitra.github.io/udemy/)
+- [Scholé vs LinkedIn Learning](https://vinitra.github.io/linkedin-learning/)
+- [Scholé vs Docebo](https://vinitra.github.io/docebo/)
+- [Scholé vs 360Learning](https://vinitra.github.io/360learning/)
+- [Scholé vs Sana Labs](https://vinitra.github.io/sana/)
+- [Scholé vs Degreed](https://vinitra.github.io/degreed/)
+- [Scholé vs Pluralsight](https://vinitra.github.io/pluralsight/)
+- [Scholé vs Skillsoft](https://vinitra.github.io/skillsoft/)
+- [Scholé vs Cornerstone OnDemand](https://vinitra.github.io/cornerstone/)
+- [Scholé vs Workday Learning](https://vinitra.github.io/workday-learning/)
+- [Scholé vs TalentLMS](https://vinitra.github.io/talentlms/)
+- [Scholé vs Absorb LMS](https://vinitra.github.io/absorb/)
+- [Scholé vs Udacity](https://vinitra.github.io/udacity/)
+- [Scholé vs DataCamp](https://vinitra.github.io/datacamp/)
+- [Scholé vs ChatGPT for training](https://vinitra.github.io/chatgpt/)
+- [Scholé vs Synthesia](https://vinitra.github.io/synthesia/)
