@@ -257,3 +257,5 @@ h3{font-size:1.2rem;letter-spacing:-.015em}
 @media (max-width:991.98px){h1{font-size:3.4rem;line-height:1}#about h1{font-size:3.4rem}}
 @media (max-width:575.98px){.news-year::before,.talk-year::before{font-size:1.1rem;top:.2rem}}
 #about .fa-ul{margin-bottom:.9rem!important}
+#about p{font-size:.93rem;line-height:1.58}
+#about .fa-ul{font-size:.91rem}
