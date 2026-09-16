@@ -214,3 +214,10 @@ a{transition:color .15s ease}
 /* smaller About body text */
 #about p{font-size:.9rem;line-height:1.55}
 #about .fa-ul{font-size:.88rem}
+/* About: fit first screen */
+@media (min-width:992px){#about{padding-top:2rem!important;padding-bottom:2rem!important}}
+#about h1{font-size:3.6rem;line-height:3.3rem}
+#about .subheading{margin-bottom:1.1rem!important;font-size:1.2rem}
+#about p{margin-bottom:.6rem}
+#about .fa-ul li{margin-bottom:.1rem}
+#about .press-reel-label{margin:.6rem 0 .5rem}
