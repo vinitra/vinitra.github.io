@@ -211,3 +211,6 @@ a{transition:color .15s ease}
 .is-linkable{cursor:pointer}
 .is-linkable .cube-title,.is-linkable h3{transition:color .15s ease}
 .is-linkable:hover .cube-title,.is-linkable:hover>.resume-content>h3{color:var(--teal)}
+/* smaller About body text */
+#about p{font-size:.9rem;line-height:1.55}
+#about .fa-ul{font-size:.88rem}
