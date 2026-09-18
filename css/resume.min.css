@@ -296,6 +296,6 @@ h3{font-size:1.2rem}
 .hero-name{display:block}
 .hero-name .subheading{text-align:left;text-align-last:left;letter-spacing:.1em;width:auto}
 /* sidebar in Inter */
-#sideNav,#sideNav .navbar-brand,#sideNav .navbar-brand b,#sideNav .navbar-nav .nav-item .nav-link{font-family:'Inter',system-ui,sans-serif}
+#sideNav,#sideNav .navbar-brand,#sideNav .navbar-brand b,#sideNav .navbar-nav .nav-item .nav-link{font-family:'Open Sans',system-ui,sans-serif}
 #sideNav .navbar-brand{font-weight:700;font-size:1.05rem;letter-spacing:.12em;text-transform:uppercase}
 @media (min-width:992px){#sideNav .navbar-nav .nav-item .nav-link{font-weight:600;font-size:.8rem;letter-spacing:.14em}}
