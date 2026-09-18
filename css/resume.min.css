@@ -277,3 +277,4 @@ h3{font-size:1.45rem;line-height:1.3}
 .speaking-heading{font-size:1.6rem}
 @media (max-width:991.98px){h1,#about h1{font-size:3.2rem}}
 @media (max-width:575.98px){.news-year::before,.talk-year::before{font-size:1.15rem;top:.2rem}}
+#sideNav .navbar-brand{font-family:'Pacifico',cursive;font-size:1.35rem;letter-spacing:.04em;text-transform:uppercase}
