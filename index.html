@@ -1209,35 +1209,6 @@
     <!-- Custom scripts for this template -->
     <script src="js/resume.min.js"></script>
 
-    <!-- Scroll reveal: elements fade in as they enter the viewport -->
-    <script>
-      (function () {
-        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce || !('IntersectionObserver' in window)) return;
-        var groups = [
-          '#about .hero-name', '#about .resume-content > p', '#about .resume-content > ul > li', '#about .press-reel-label', '#about .press-card', '#about .social-kudos-row',
-          '.resume-section h2', '#research .resume-content > p', '.cube', '#experience .resume-item', '#education .resume-item', '#speaking .resume-item',
-          '.award-card', '.speaking-heading', '.talk-year', '.news-year'
-        ];
-        var STEP = 70, MAX = 8;
-        groups.forEach(function (sel) {
-          var els = document.querySelectorAll(sel);
-          els.forEach(function (el, i) {
-            el.classList.add('reveal');
-            var parent = el.parentElement;
-            var idx = Array.prototype.indexOf.call(parent.children, el);
-            el.style.setProperty('--d', Math.min(idx, MAX) * STEP + 'ms');
-          });
-        });
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
-          });
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-      })();
-    </script>
-
     <!-- Clickable cards: card click follows its primary link -->
     <script>
       (function () {
