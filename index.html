@@ -1212,7 +1212,7 @@
     <!-- Clickable cards: card click follows its primary link -->
     <script>
       (function () {
-        var SELECTORS = '.cube, .talk-item, .award-card, #experience .resume-item, #education .resume-item, #speaking .resume-item';
+        var SELECTORS = '.cube, .talk-item, .award-card';
         document.querySelectorAll(SELECTORS).forEach(function (card) {
           var link = card.querySelector('.cube-links a') || card.querySelector('h3 a') || card.querySelector('a[href]');
           if (!link) return;
